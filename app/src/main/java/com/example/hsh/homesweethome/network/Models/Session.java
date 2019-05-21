@@ -26,8 +26,6 @@ public class Session extends Application {
         prefsEditor=prefs.edit();
     }
 
-
-
     public void addCookies(Response originalResponse){
         HashSet<String> cookies = (HashSet<String>) prefs.getStringSet(PREF_COOKIES, new HashSet<String>());
         String currentCookieUser = prefs.getString(CURRENT_COOKIE_USER,null);
