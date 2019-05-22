@@ -5,15 +5,21 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
 
+
 public class FurnitureDetails extends AppCompatActivity{
 
     private ViewPager viewPager;
     private SpaceNavigationView bottomNavigationView;
+
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +29,7 @@ public class FurnitureDetails extends AppCompatActivity{
         viewPager = findViewById(R.id.furnitureDetailsViewPager);
         viewPager.setAdapter(new FurnitureFragmentAdapter(getSupportFragmentManager()));
         bottomNavigationView = findViewById(R.id.bottomNavigationDetailsMain);
+
 
         bottomNavigationView.addSpaceItem(new SpaceItem("", R.drawable.sceneform_hand_phone));
         bottomNavigationView.addSpaceItem(new SpaceItem("", R.drawable.sceneform_plane));
@@ -50,5 +57,13 @@ public class FurnitureDetails extends AppCompatActivity{
             }
         });
 
+
+
+
+
+
     }
+
+
+
 }

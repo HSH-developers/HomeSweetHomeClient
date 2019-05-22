@@ -5,8 +5,6 @@
     android:id="@+id/inChannelMainLayout"
     android:fitsSystemWindows="true">
 
-
-
     <FrameLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
