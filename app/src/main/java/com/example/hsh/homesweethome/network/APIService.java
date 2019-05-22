@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 public interface APIService {
 
-    @GET("/")
+    @GET("/api/furnitures/retrieveAllFurnitures")
     Call<List<Furniture>> getFurnitures();
 
 

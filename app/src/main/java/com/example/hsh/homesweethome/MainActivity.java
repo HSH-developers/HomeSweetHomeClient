@@ -23,19 +23,20 @@ public class MainActivity extends AppCompatActivity {
     RecyclerViewAdapterMain myAdapter;
 
     private String TAG  = "MainActivity";
-    private APIService mAPIService = Utils.getAPIService();
+    private APIService mAPIService;
 
     private List<Furniture> furnitures = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mAPIService = Utils.getAPIService();
         Call<List<Furniture>> call = mAPIService.getFurnitures();
         call.enqueue(new Callback<List<Furniture>>() {
             @Override
             public void onResponse(Call<List<Furniture>> call, Response<List<Furniture>> response) {
                 if (response.isSuccessful()) {
+                    Log.e(TAG, response.body().toString());
                     furnitures.addAll(response.body());
                     myrv = findViewById(R.id.recyclerview_id);
                     myAdapter = new RecyclerViewAdapterMain(getApplicationContext(), furnitures);

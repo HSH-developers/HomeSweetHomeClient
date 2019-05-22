@@ -1,6 +1,7 @@
 package com.example.hsh.homesweethome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -31,7 +32,7 @@ public class RecyclerViewAdapterMain extends RecyclerView.Adapter<RecyclerViewAd
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view ;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view = mInflater.inflate(R.layout.activity_main,parent,false);
+        view = mInflater.inflate(R.layout.furniture_card,parent,false);
         return new MyViewHolder(view);
     }
 
@@ -44,6 +45,16 @@ public class RecyclerViewAdapterMain extends RecyclerView.Adapter<RecyclerViewAd
             Uri uri = Uri.parse(UriString);
             Picasso.get().load(uri).into(holder.furniture_image);
         }
+
+        holder.furniture_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, FurnitureARActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -54,11 +65,13 @@ public class RecyclerViewAdapterMain extends RecyclerView.Adapter<RecyclerViewAd
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView furniture_title;
         ImageView furniture_image;
+        CardView furniture_card;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             furniture_title = itemView.findViewById(R.id.furnitureTitleCard);
             furniture_image = itemView.findViewById(R.id.furnitureImgCard);
+            furniture_card = itemView.findViewById(R.id.furnitureCard);
 
 
         }
