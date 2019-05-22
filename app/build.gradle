@@ -53,4 +53,6 @@ dependencies {
 
     // Provides ability to load 3D models at runtime
     implementation 'com.google.ar.sceneform:assets:1.6.0'
+
+    implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
 }

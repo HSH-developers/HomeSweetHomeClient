@@ -24,8 +24,8 @@ import com.google.ar.sceneform.ux.TransformableNode;
 public class FurnitureARActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
-    private ModelRenderable duckRenderable;
-    private static final String GLTF_ASSET =  "https://s3.ca-central-1.amazonaws.com/3dtestmodels/models/Model1.glb";
+    private ModelRenderable modelRenderable;
+    private static final String GLB_ASSET =  "https://s3.ca-central-1.amazonaws.com/3dtestmodels/models/Model1.glb";
 
     private static final String TAG = FurnitureARActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
@@ -45,19 +45,19 @@ public class FurnitureARActivity extends AppCompatActivity {
         ModelRenderable.builder()
                 .setSource(this, RenderableSource.builder().setSource(
                         this,
-                        Uri.parse(GLTF_ASSET),
+                        Uri.parse(GLB_ASSET),
                         RenderableSource.SourceType.GLB)
                         .setScale(0.5f)  // Scale the original model to 50%.
                         .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                         .build())
-                .setRegistryId(GLTF_ASSET)
+                .setRegistryId(GLB_ASSET)
                 .build()
-                .thenAccept(renderable -> duckRenderable = renderable)
+                .thenAccept(renderable -> modelRenderable = renderable)
                 .exceptionally(
                         throwable -> {
                             Toast toast =
                                     Toast.makeText(this, "Unable to load renderable " +
-                                            GLTF_ASSET, Toast.LENGTH_LONG);
+                                            GLB_ASSET, Toast.LENGTH_LONG);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
                             return null;
@@ -65,7 +65,7 @@ public class FurnitureARActivity extends AppCompatActivity {
 
         arFragment.setOnTapArPlaneListener(
                 (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (duckRenderable == null) {
+                    if (modelRenderable == null) {
                         return;
                     }
 
@@ -77,7 +77,7 @@ public class FurnitureARActivity extends AppCompatActivity {
                     // Create the transformable andy and add it to the anchor.
                     TransformableNode andy = new TransformableNode(arFragment.getTransformationSystem());
                     andy.setParent(anchorNode);
-                    andy.setRenderable(duckRenderable);
+                    andy.setRenderable(modelRenderable);
                     andy.select();
                 });
     }

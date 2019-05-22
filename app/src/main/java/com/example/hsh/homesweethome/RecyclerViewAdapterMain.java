@@ -49,7 +49,8 @@ public class RecyclerViewAdapterMain extends RecyclerView.Adapter<RecyclerViewAd
         holder.furniture_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, FurnitureARActivity.class);
+                Intent intent = new Intent(mContext, FurnitureDetails.class);
+                intent.putExtra("FurnitureName" , mData.get(position).getFurnitureName());
                 mContext.startActivity(intent);
             }
         });

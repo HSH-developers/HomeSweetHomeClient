@@ -30,6 +30,7 @@ only being visible in the Google Play Store on devices that support ARCore. -->
             </intent-filter>
         </activity>
         <activity android:name=".FurnitureARActivity"></activity>
+        <activity android:name=".FurnitureDetails"></activity>
 
     </application>
 
