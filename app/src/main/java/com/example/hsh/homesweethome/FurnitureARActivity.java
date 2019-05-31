@@ -47,7 +47,7 @@ public class FurnitureARActivity extends AppCompatActivity {
             furniture = (Furniture) intent.getSerializableExtra("Furniture");
         }
 
-        GLB_ASSET = furniture.getFurnitureModelUrl();
+        GLB_ASSET = "https://models-furnitures.s3-ap-southeast-1.amazonaws.com/Model12.glb";
 
         setContentView(R.layout.ar_fragment);
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
