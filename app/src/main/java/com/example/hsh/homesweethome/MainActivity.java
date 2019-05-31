@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.example.hsh.homesweethome.Models.Furniture;
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity
         Call<List<Furniture>> call = mAPIService.getFurnitures();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setElevation(4);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -91,6 +93,27 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mSearchView = findViewById(R.id.search_bar);
+
+        mSearchView.setOnLeftMenuClickListener(new FloatingSearchView.OnLeftMenuClickListener() {
+            @Override
+            public void onMenuOpened() {
+
+            }
+
+            @Override
+            public void onMenuClosed() {
+
+            }
+        });
+
+        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
+            @Override
+            public void onSearchTextChanged(String oldQuery, String newQuery) {
+
+            }
+        });
 
         call.enqueue(new Callback<List<Furniture>>() {
             @Override
@@ -108,37 +131,37 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DisposableObserver<List<Furniture>> observer = getSearchObserver();
-
-        disposable.add(
-                publishSubject
-                        .debounce(300, TimeUnit.MILLISECONDS)
-                        .distinctUntilChanged()
-                        .switchMapSingle(new Function<String, Single<List<Furniture>>>() {
-                            @Override
-                            public Single<List<Furniture>> apply(String s) throws Exception {
-                                return mAPIService.getQueryFurnitures(20, s)
-                                        .subscribeOn(Schedulers.io())
-                                        .observeOn(AndroidSchedulers.mainThread());
-                            }
-                        })
-                        .subscribeWith(observer));
-
-        disposable.add(RxTextView.textChangeEvents(searchBar)
-                .skipInitialValue()
-                .debounce(300, TimeUnit.MILLISECONDS)
-                /*.filter(new Predicate<TextViewTextChangeEvent>() {
-                    @Override
-                    public boolean test(TextViewTextChangeEvent textViewTextChangeEvent) throws Exception {
-                        return TextUtils.isEmpty(textViewTextChangeEvent.text().toString()) || textViewTextChangeEvent.text().toString().length() > 2;
-                    }
-                })*/
-                .distinctUntilChanged()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(searchContacts()));
-
-        disposable.add(observer);
+//        DisposableObserver<List<Furniture>> observer = getSearchObserver();
+//
+//        disposable.add(
+//                publishSubject
+//                        .debounce(300, TimeUnit.MILLISECONDS)
+//                        .distinctUntilChanged()
+//                        .switchMapSingle(new Function<String, Single<List<Furniture>>>() {
+//                            @Override
+//                            public Single<List<Furniture>> apply(String s) throws Exception {
+//                                return mAPIService.getQueryFurnitures(20, s)
+//                                        .subscribeOn(Schedulers.io())
+//                                        .observeOn(AndroidSchedulers.mainThread());
+//                            }
+//                        })
+//                        .subscribeWith(observer));
+//
+//        disposable.add(RxTextView.textChangeEvents(mSearchView)
+//                .skipInitialValue()
+//                .debounce(300, TimeUnit.MILLISECONDS)
+//                /*.filter(new Predicate<TextViewTextChangeEvent>() {
+//                    @Override
+//                    public boolean test(TextViewTextChangeEvent textViewTextChangeEvent) throws Exception {
+//                        return TextUtils.isEmpty(textViewTextChangeEvent.text().toString()) || textViewTextChangeEvent.text().toString().length() > 2;
+//                    }
+//                })*/
+//                .distinctUntilChanged()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeWith(searchContacts()));
+//
+//        disposable.add(observer);
 
     }
 
