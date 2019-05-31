@@ -20,7 +20,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewAdapterMain extends RecyclerView.Adapter<RecyclerViewAdapterMain.MyViewHolder> implements Filterable{
+public class RecyclerViewAdapterMain
+        extends RecyclerView.Adapter<RecyclerViewAdapterMain.MyViewHolder> implements Filterable{
 
     private Context mContext ;
     private List<Furniture> mData ;
