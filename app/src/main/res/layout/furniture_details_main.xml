@@ -4,5 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/furnitureMainName"
+        android:layout_width="wrap_content"
+        android:layout_height="20sp"
+        android:layout_above="@+id/furnitureMainImg"
+        android:layout_marginBottom="20sp"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/furnitureMainImg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:background="#2d2d2d"/>
+
 
 </RelativeLayout>

@@ -3,21 +3,44 @@ package com.example.hsh.homesweethome.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Furniture {
+import java.io.Serializable;
 
-    @SerializedName("furnitureBrand")
-    @Expose
-    private String furnitureBrand;
+public class Furniture implements Serializable{
+
     @SerializedName("furnitureName")
     @Expose
     private String furnitureName;
+    @SerializedName("furnitureBrand")
+    @Expose
+    private String furnitureBrand;
+    @SerializedName("furnitureCategory")
+    @Expose
+    private String furnitureCategory;
+    @SerializedName("furnitureDimension")
+    @Expose
+    private String furnitureDimension;
+    @SerializedName("furniturePrice")
+    @Expose
+    private Integer furniturePrice;
     @SerializedName("furnitureType")
     @Expose
     private String furnitureType;
     @SerializedName("furnitureImageUrl")
     @Expose
     private String furnitureImageUrl;
+    @SerializedName("furnitureModelUrl")
+    @Expose
+    private String furnitureModelUrl;
 
+
+
+    public String getFurnitureName() {
+        return furnitureName;
+    }
+
+    public void setFurnitureName(String furnitureName) {
+        this.furnitureName = furnitureName;
+    }
 
     public String getFurnitureBrand() {
         return furnitureBrand;
@@ -27,12 +50,28 @@ public class Furniture {
         this.furnitureBrand = furnitureBrand;
     }
 
-    public String getFurnitureName() {
-        return furnitureName;
+    public String getFurnitureCategory() {
+        return furnitureCategory;
     }
 
-    public void setFurnitureName(String furnitureName) {
-        this.furnitureName = furnitureName;
+    public void setFurnitureCategory(String furnitureCategory) {
+        this.furnitureCategory = furnitureCategory;
+    }
+
+    public String getFurnitureDimension() {
+        return furnitureDimension;
+    }
+
+    public void setFurnitureDimension(String furnitureDimension) {
+        this.furnitureDimension = furnitureDimension;
+    }
+
+    public Integer getFurniturePrice() {
+        return furniturePrice;
+    }
+
+    public void setFurniturePrice(Integer furniturePrice) {
+        this.furniturePrice = furniturePrice;
     }
 
     public String getFurnitureType() {
@@ -51,8 +90,15 @@ public class Furniture {
         this.furnitureImageUrl = furnitureImageUrl;
     }
 
+    public String getFurnitureModelUrl() {
+        return furnitureModelUrl;
+    }
+
+    public void setFurnitureModelUrl(String furnitureModelUrl) {
+        this.furnitureModelUrl = furnitureModelUrl;
+    }
+
 
 }
-
 
 
