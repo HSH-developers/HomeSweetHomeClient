@@ -34,8 +34,6 @@ public class FurnitureDetails extends AppCompatActivity{
         Intent intent = getIntent();
         if(intent.getExtras() != null) {
             furniture = (Furniture) intent.getSerializableExtra("Furniture");
-            furnitureName = intent.getExtras().getString("FurnitureName");
-            furnitureImage = intent.getExtras().getString("FurnitureImage");
         }
 
         Log.e(TAG, furniture.getFurnitureImageUrl() );
@@ -44,7 +42,7 @@ public class FurnitureDetails extends AppCompatActivity{
 
         setContentView(R.layout.furniture_details);
         viewPager = findViewById(R.id.furnitureDetailsViewPager);
-        viewPager.setAdapter(new FurnitureFragmentAdapter(getSupportFragmentManager(), furnitureName, furnitureImage));
+        viewPager.setAdapter(new FurnitureFragmentAdapter(getSupportFragmentManager(), furniture));
         bottomNavigationView = findViewById(R.id.bottomNavigationDetailsMain);
 
 
@@ -62,6 +60,7 @@ public class FurnitureDetails extends AppCompatActivity{
             @Override
             public void onCentreButtonClick() {
                 Intent intent = new Intent(getApplicationContext(), FurnitureARActivity.class);
+                intent.putExtra("Furniture", furniture);
                 startActivity(intent);
 
             }

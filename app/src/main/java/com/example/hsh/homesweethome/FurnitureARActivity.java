@@ -3,6 +3,7 @@ package com.example.hsh.homesweethome;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.Toast;
+
+import com.example.hsh.homesweethome.Models.Furniture;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
@@ -25,10 +28,11 @@ public class FurnitureARActivity extends AppCompatActivity {
 
     private ArFragment arFragment;
     private ModelRenderable modelRenderable;
-    private static final String GLB_ASSET =  "https://s3.ca-central-1.amazonaws.com/3dtestmodels/models/Model1.glb";
+    private String GLB_ASSET;
 
     private static final String TAG = FurnitureARActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
+    private Furniture furniture;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +42,12 @@ public class FurnitureARActivity extends AppCompatActivity {
             return;
         }
 
+        Intent intent = getIntent();
+        if(intent.getExtras() != null) {
+            furniture = (Furniture) intent.getSerializableExtra("Furniture");
+        }
+
+        GLB_ASSET = furniture.getFurnitureModelUrl();
 
         setContentView(R.layout.ar_fragment);
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);

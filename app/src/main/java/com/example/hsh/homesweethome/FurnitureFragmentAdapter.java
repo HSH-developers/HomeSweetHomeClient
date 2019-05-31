@@ -7,21 +7,20 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 import android.view.ViewGroup;
 
+import com.example.hsh.homesweethome.Models.Furniture;
+
 public class FurnitureFragmentAdapter extends FragmentStatePagerAdapter {
     int PAGES_COUNT = 3;
     private String pageTitles[] = new String[]{"Review", "AR", "Cart"};
     private Context context;
-    private String furnitureName;
-    private String furnitureImage;
+    private Furniture furniture;
+
     private String TAG = "Main Fragment";
 
-    public FurnitureFragmentAdapter(FragmentManager fm, String furnitureName, String furnitureImage) {
+    public FurnitureFragmentAdapter(FragmentManager fm, Furniture furniture) {
         super(fm);
-        this.furnitureName = furnitureName;
-        this.furnitureImage = furnitureImage;
+        this.furniture = furniture;
 
-        Log.e(TAG, furnitureName );
-        Log.e(TAG, furnitureImage);
 
     }
 
@@ -29,7 +28,7 @@ public class FurnitureFragmentAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch(position) {
             case 0 : return new FurnitureDetailsReviewFragment();
-            case 1 : return new FurnitureDetailsMainFragment(furnitureName, furnitureImage);
+            case 1 : return new FurnitureDetailsMainFragment(furniture);
             case 2 : return new FurnitureDetailsCartFragment();
             default: return null;
         }

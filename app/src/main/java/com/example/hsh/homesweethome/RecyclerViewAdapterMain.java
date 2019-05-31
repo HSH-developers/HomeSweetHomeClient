@@ -56,8 +56,6 @@ public class RecyclerViewAdapterMain extends RecyclerView.Adapter<RecyclerViewAd
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, FurnitureDetails.class);
                 intent.putExtra("Furniture", mDataFiltered.get(position));
-                intent.putExtra("FurnitureName" , mDataFiltered.get(position).getFurnitureName());
-                intent.putExtra("FurnitureImage", mDataFiltered.get(position).getFurnitureImageUrl());
                 mContext.startActivity(intent);
             }
         });
