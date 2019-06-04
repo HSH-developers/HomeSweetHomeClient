@@ -58,9 +58,9 @@
             android:id="@+id/furnitureRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleY="0.5"
+            android:layout_gravity="center"
             android:scaleX="0.5"
-            android:layout_gravity="center" />
+            android:scaleY="0.5" />
 
         <TextView
             android:id="@+id/furnitureRatingScale"
@@ -74,6 +74,17 @@
 
     </LinearLayout>
 
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabTextAppearance="@style/FurnitureDetailsTabLayout"
+        app:tabGravity="fill"
+        app:tabMode="scrollable"
+        android:layout_below="@+id/furnitureMain">
+
+    </android.support.design.widget.TabLayout>
+
     <HorizontalScrollView
         android:id="@+id/furnitureDetailsHorizontalScrollView"
         android:layout_width="match_parent"
@@ -81,14 +92,17 @@
         android:layout_alignParentBottom="true"
         android:fillViewport="true"
         android:measureAllChildren="false"
-        android:layout_below="@id/furnitureMain"
+        android:layout_below="@id/tab_layout"
         android:scrollbars="none" >
+
+
         <LinearLayout
             android:id="@+id/innerLay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
+
             <LinearLayout
                 android:id="@+id/basic_specification"
                 android:layout_width="match_parent"
@@ -105,15 +119,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:weightSum="4">
+                        android:weightSum="3">
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Basic Specification"
-                            android:layout_weight="1"
-                            android:src="@drawable/ic_action_action_search" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -186,50 +193,47 @@
 
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/care_instruction"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_margin="5dp"
-
                 android:orientation="vertical" >
+
                 <RelativeLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Care Instruction"
-                        android:src="@drawable/ic_action_action_search" />
+
                     <TextView
                         android:id="@+id/care_instruction_text"
-                        android:layout_width="0.2dp"
-                        android:layout_height="fill_parent"
-                        android:layout_alignParentRight="true"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dummy data care instruction"
+                        android:layout_centerInParent="true" />
                 </RelativeLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/reviews"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:layout_margin="5dp"
-
                 android:orientation="vertical" >
+
                 <RelativeLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent" >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reviews"
-                        android:src="@drawable/ic_action_action_search" />
+
                     <TextView
                         android:id="@+id/reviews_text"
-                        android:layout_width="0.2dp"
-                        android:layout_height="fill_parent"
-                        android:layout_alignParentRight="true" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dummy Data Reviews"
+                        android:layout_centerInParent="true" />
+
                 </RelativeLayout>
             </LinearLayout>
             <LinearLayout
@@ -240,14 +244,16 @@
                 android:layout_margin="5dp"
 
                 android:orientation="vertical" >
+
                 <RelativeLayout
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent" >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="More like this"
-                        android:src="@drawable/ic_action_action_search" />
+                        android:layout_centerInParent="true"
+                        android:text="Dummy Data More Like This"/>
 
                 </RelativeLayout>
             </LinearLayout>

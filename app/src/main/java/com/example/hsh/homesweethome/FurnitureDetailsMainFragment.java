@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -40,6 +41,7 @@ public class FurnitureDetailsMainFragment extends Fragment {
     HorizontalScrollView furnitureDetailsHorizontalScrollView;
     GestureDetector gestureDetector = null;
     ArrayList<LinearLayout> layouts = null;
+    TabLayout tabLayout;
 
     LinearLayout.LayoutParams params;
     int parentLeft, parentRight;
@@ -77,6 +79,32 @@ public class FurnitureDetailsMainFragment extends Fragment {
         furnitureMaterialUsed = view.findViewById(R.id.basic_specification_material_used_result);
         furnitureDimension = view.findViewById(R.id.basic_specification_dimension_result);
         furnitureCategory = view.findViewById(R.id.basic_specification_category_result);
+        tabLayout = view.findViewById(R.id.tab_layout);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Basic Specification"));
+        tabLayout.addTab(tabLayout.newTab().setText("Care Instruction"));
+        tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
+        tabLayout.addTab(tabLayout.newTab().setText("More Like this"));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                tabLayout.setScrollPosition(tab.getPosition(), 0f, true);
+                furnitureDetailsHorizontalScrollView.smoothScrollTo(layouts.get(tab.getPosition())
+                        .getLeft(), 0);
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         furniturePriceTextView.setText(String.valueOf(furniture.getFurniturePrice()));
         furnitureMaterialUsed.setText(furniture.getFurnitureType());
@@ -105,6 +133,10 @@ public class FurnitureDetailsMainFragment extends Fragment {
         layouts.add(careInstruction);
         layouts.add(review);
         layouts.add(moreLikeThis);
+
+
+
+
 
         furnitureDetailsHorizontalScrollView.setOnTouchListener((v, event) -> {
             if (gestureDetector.onTouchEvent(event)) {
@@ -153,6 +185,7 @@ public class FurnitureDetailsMainFragment extends Fragment {
 
             furnitureDetailsHorizontalScrollView.smoothScrollTo(layouts.get(currPosition)
                     .getLeft(), 0);
+            tabLayout.setScrollPosition(currPosition,0f, true);
             return true;
         }
     }
@@ -165,6 +198,7 @@ public class FurnitureDetailsMainFragment extends Fragment {
             if (layouts.get(i).getLocalVisibleRect(hitRect)) {
                 if (direction.equals("left")) {
                     position = i;
+
                     break;
                 } else if (direction.equals("right")) {
                     rightCounter++;
