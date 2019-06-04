@@ -46,14 +46,41 @@ public class FurnitureDetails extends AppCompatActivity{
         bottomNavigationView = findViewById(R.id.bottomNavigationDetailsMain);
 
 
-        bottomNavigationView.addSpaceItem(new SpaceItem("", R.drawable.sceneform_hand_phone));
-        bottomNavigationView.addSpaceItem(new SpaceItem("", R.drawable.sceneform_plane));
+        bottomNavigationView.addSpaceItem(new SpaceItem("", R.drawable.heart));
+        bottomNavigationView.addSpaceItem(new SpaceItem("", R.drawable.shopping_cart));
 
         bottomNavigationView.setCentreButtonSelectable(true);
         bottomNavigationView.setCentreButtonSelected();
         bottomNavigationView.setActivated(true);
 
         viewPager.setCurrentItem(1);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                switch(position) {
+                    case 0 :
+                        bottomNavigationView.changeCurrentItem(0);
+                        break;
+                    case 1 :
+                        bottomNavigationView.changeCurrentItem(1);
+                        break;
+
+
+                }
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
 
 
         bottomNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
@@ -67,7 +94,16 @@ public class FurnitureDetails extends AppCompatActivity{
 
             @Override
             public void onItemClick(int itemIndex, String itemName) {
-                viewPager.setCurrentItem(itemIndex);
+                switch(itemIndex) {
+                    case 0 :
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case 1 :
+                        viewPager.setCurrentItem(2);
+                        break;
+
+
+                }
             }
 
             @Override

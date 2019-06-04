@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,7 +32,6 @@ public class FurnitureDetailsMainFragment extends Fragment {
     ImageView furnitureImage;
     TextView furnitureNameTextView;
     TextView furniturePriceTextView;
-    TextView furnitureDescriptionTextView;
     TextView furnitureMaterialUsed;
     TextView furnitureCategory;
     TextView furnitureDimension;
@@ -73,7 +73,6 @@ public class FurnitureDetailsMainFragment extends Fragment {
         furnitureImage = view.findViewById(R.id.furnitureMainImg);
         furnitureNameTextView = view.findViewById(R.id.furnitureMainName);
         furniturePriceTextView = view.findViewById(R.id.furniturePrice);
-        furnitureDescriptionTextView = view.findViewById(R.id.furnitureDescription);
         furnitureRatingBar = view.findViewById(R.id.furnitureRating);
         furnitureRatingScale = view.findViewById(R.id.furnitureRatingScale);
         furnitureMaterialUsed = view.findViewById(R.id.basic_specification_material_used_result);
@@ -106,7 +105,8 @@ public class FurnitureDetailsMainFragment extends Fragment {
             }
         });
 
-        furniturePriceTextView.setText(String.valueOf(furniture.getFurniturePrice()));
+        String priceTag = "$"+ String.valueOf(furniture.getFurniturePrice());
+        furniturePriceTextView.setText(priceTag);
         furnitureMaterialUsed.setText(furniture.getFurnitureType());
         furnitureDimension.setText(furniture.getFurnitureDimension());
         furnitureCategory.setText(furniture.getFurnitureCategory());
@@ -170,7 +170,15 @@ public class FurnitureDetailsMainFragment extends Fragment {
         });
 
         furnitureNameTextView.setText(furniture.getFurnitureName());
-        Picasso.get().load(uri).resize(70,70).centerCrop().into(furnitureImage);
+        ViewTreeObserver vto = furnitureImage.getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                furnitureImage.getViewTreeObserver().removeOnPreDrawListener(this);
+                Picasso.get().load(uri).resize(furnitureImage.getMeasuredWidth(), furnitureImage.getMeasuredHeight()).centerCrop().into(furnitureImage);
+                return true;
+            }
+        });
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

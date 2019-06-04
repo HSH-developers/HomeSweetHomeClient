@@ -22,6 +22,12 @@
             android:id="@+id/bottomNavigationDetailsMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:centre_button_icon="@drawable/ar_icon"
+            app:inactive_centre_button_icon_color="@color/black"
+            app:centre_button_color="@color/colorAccent"
+            app:space_background_color="@color/space_white"
+            app:space_item_icon_size="24sp"
+            app:active_item_color="@color/black"
             android:layout_gravity="bottom"/>
     </FrameLayout>
 

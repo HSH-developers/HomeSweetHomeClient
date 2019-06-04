@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.search_bar)
     EditText searchBar;
 
-    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Furniture>> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
+
             }
         });
 
