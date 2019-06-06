@@ -56,7 +56,7 @@ public class RecyclerViewAdapterMain
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, FurnitureDetails.class);
-                intent.putExtra("FurnitureName" , mDataFiltered.get(position).getFurnitureName());
+                intent.putExtra("Furniture", mDataFiltered.get(position));
                 mContext.startActivity(intent);
             }
         });
