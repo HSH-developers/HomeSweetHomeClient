@@ -94,26 +94,35 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mSearchView = findViewById(R.id.search_bar);
-
-        mSearchView.setOnLeftMenuClickListener(new FloatingSearchView.OnLeftMenuClickListener() {
-            @Override
-            public void onMenuOpened() {
-
-            }
-
-            @Override
-            public void onMenuClosed() {
-
-            }
-        });
-
-        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
-            @Override
-            public void onSearchTextChanged(String oldQuery, String newQuery) {
-
-            }
-        });
+//        mSearchView = findViewById(R.id.search_bar);
+//
+//        mSearchView.getQuery();
+//
+//        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
+//            @Override
+//            public void onSearchTextChanged(String oldQuery, String newQuery) {
+//
+//            }
+//        });
+//
+//        mSearchView.setOnLeftMenuClickListener(new FloatingSearchView.OnLeftMenuClickListener() {
+//            @Override
+//            public void onMenuOpened() {
+//
+//            }
+//
+//            @Override
+//            public void onMenuClosed() {
+//
+//            }
+//        });
+//
+//        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
+//            @Override
+//            public void onSearchTextChanged(String oldQuery, String newQuery) {
+//
+//            }
+//        });
 
         call.enqueue(new Callback<List<Furniture>>() {
             @Override

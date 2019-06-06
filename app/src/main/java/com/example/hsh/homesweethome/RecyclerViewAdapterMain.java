@@ -38,7 +38,7 @@ public class RecyclerViewAdapterMain
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view ;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view = mInflater.inflate(R.layout.furniture_card,parent,false);
+        view = mInflater.inflate(R.layout.furniture_card, parent,false);
         return new MyViewHolder(view);
     }
 
