@@ -11,36 +11,39 @@
     tools:showIn="@layout/app_bar_main">
 
 
-    <com.arlib.floatingsearchview.FloatingSearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/search_bar"
-        app:floatingSearch_searchBarMarginLeft="5dp"
-        app:floatingSearch_searchBarMarginRight="5dp"
-        app:floatingSearch_searchBarMarginTop="5dp"
-        app:floatingSearch_searchHint="Search"
-        app:floatingSearch_suggestionsListAnimDuration="250"
-        app:floatingSearch_showSearchKey="false"
-        app:floatingSearch_leftActionMode="showSearch"
-        app:floatingSearch_close_search_on_keyboard_dismiss="true">
+    <!--<com.arlib.floatingsearchview.FloatingSearchView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/search_bar"-->
+        <!--app:floatingSearch_searchBarMarginLeft="5dp"-->
+        <!--app:floatingSearch_searchBarMarginRight="5dp"-->
+        <!--app:floatingSearch_searchBarMarginTop="5dp"-->
+        <!--app:floatingSearch_searchHint="Search"-->
+        <!--app:floatingSearch_suggestionsListAnimDuration="250"-->
+        <!--app:floatingSearch_showSearchKey="false"-->
+        <!--app:floatingSearch_leftActionMode="showSearch"-->
+        <!--app:floatingSearch_close_search_on_keyboard_dismiss="true">-->
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="137dp"
-            android:layout_marginTop="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/main_page_banner"
-            android:contentDescription="TODO" />
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="137dp"-->
+            <!--android:layout_marginTop="50dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:src="@drawable/main_page_banner"-->
+            <!--android:contentDescription="TODO" />-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_id"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            android:layout_marginTop="170dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </com.arlib.floatingsearchview.FloatingSearchView>
+        <!--&lt;!&ndash;<android.support.v7.widget.RecyclerView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/recyclerview_id"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:padding="8dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginTop="170dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:layout_behavior="@string/appbar_scrolling_view_behavior"/>&ndash;&gt;-->
+
+    <!--</com.arlib.floatingsearchview.FloatingSearchView>-->
+
+    <include layout="@layout/furniture_type_and_cards"/>
 
 </LinearLayout>
