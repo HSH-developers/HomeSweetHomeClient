@@ -47,7 +47,8 @@ public class FurnitureARActivity extends AppCompatActivity {
             furniture = (Furniture) intent.getSerializableExtra("Furniture");
         }
 
-        GLB_ASSET = "https://models-furnitures.s3-ap-southeast-1.amazonaws.com/Model12.glb";
+        GLB_ASSET = furniture.getFurnitureModelUrl();
+
 
         setContentView(R.layout.ar_fragment);
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
@@ -57,7 +58,7 @@ public class FurnitureARActivity extends AppCompatActivity {
                         this,
                         Uri.parse(GLB_ASSET),
                         RenderableSource.SourceType.GLB)
-                        .setScale(0.5f)  // Scale the original model to 50%.
+                        .setScale(0.01f)  // Scale the original model to 50%.
                         .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                         .build())
                 .setRegistryId(GLB_ASSET)
