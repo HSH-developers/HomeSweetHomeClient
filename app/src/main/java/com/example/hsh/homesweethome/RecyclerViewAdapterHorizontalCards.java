@@ -7,37 +7,42 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.hsh.homesweethome.Models.Furniture;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class RecyclerViewAdapterCards
-        extends RecyclerView.Adapter<RecyclerViewAdapterCards.MyViewHolder>
-        implements Filterable {
+public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<RecyclerViewAdapterHorizontalCards.ViewHolder>{
 
+    private ArrayList<Furniture> mData = new ArrayList<>();
     private Context mContext;
-    private List<Furniture> mData;
 
-    public RecyclerViewAdapterCards(Context mContext, List<Furniture> mData) {
-
+    public RecyclerViewAdapterHorizontalCards(ArrayList<Furniture> mData, Context mContext) {
+        this.mData = mData;
+        this.mContext = mContext;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view;
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        return null;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.furniture_type_and_cards, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Glide.with(mContext)
+                .asBitmap()
+                .load(mData.get(position).getFurnitureImageUrl())
+                .into(holder.furniture_image);
+        Glide.with(mContext)
+                .asBitmap()
+                .load(mData.get(position).getFurnitureBrandLogoUrl())
+                .into(holder.furniture_brand_logo);
     }
 
     @Override
@@ -45,17 +50,13 @@ public class RecyclerViewAdapterCards
         return 0;
     }
 
-    @Override
-    public Filter getFilter() {
-        return null;
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView furniture_title, furniture_brand, furniture_price;
         ImageView furniture_image, furniture_brand_logo;
         CardView furniture_card;
 
-        public MyViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             furniture_title = itemView.findViewById(R.id.furnitureTitleCard);
             furniture_brand = itemView.findViewById(R.id.furnitureBrandCard);
@@ -63,8 +64,8 @@ public class RecyclerViewAdapterCards
             furniture_brand_logo = itemView.findViewById(R.id.furnitureBrandLogoCard);
             furniture_image = itemView.findViewById(R.id.furnitureImgCard);
             furniture_card = itemView.findViewById(R.id.furnitureCard);
-
-
         }
+
     }
+
 }

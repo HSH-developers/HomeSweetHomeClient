@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity
         mAdapter = new RecyclerViewAdapterMain(getApplicationContext(), furnitures);
 
         myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+        //Change to Linear Layout
+        //myrv.setLayoutManager(new LinearLayoutManager(this));
         myrv.setAdapter(mAdapter);
 
         mAPIService = Utils.getAPIService();
@@ -93,6 +96,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //SearchView to be tied to backend
 //        mSearchView = findViewById(R.id.search_bar);
 //
 //        mSearchView.getQuery();

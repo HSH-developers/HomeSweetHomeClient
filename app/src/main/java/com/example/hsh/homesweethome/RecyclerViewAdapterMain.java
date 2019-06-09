@@ -105,15 +105,20 @@ public class RecyclerViewAdapterMain
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView furniture_title;
-        ImageView furniture_image;
+        TextView furniture_title, furniture_brand, furniture_price;
+        ImageView furniture_image, furniture_brand_logo;
         CardView furniture_card;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
             furniture_title = itemView.findViewById(R.id.furnitureTitleCard);
+            furniture_brand = itemView.findViewById(R.id.furnitureBrandCard);
+            furniture_price = itemView.findViewById(R.id.furniturePriceCard);
+            furniture_brand_logo = itemView.findViewById(R.id.furnitureBrandLogoCard);
             furniture_image = itemView.findViewById(R.id.furnitureImgCard);
             furniture_card = itemView.findViewById(R.id.furnitureCard);
+
 
 
         }
