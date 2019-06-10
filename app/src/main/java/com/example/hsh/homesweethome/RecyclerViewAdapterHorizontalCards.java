@@ -1,6 +1,7 @@
 package com.example.hsh.homesweethome;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +40,19 @@ public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<Rec
                 .asBitmap()
                 .load(mData.get(position).getFurnitureImageUrl())
                 .into(holder.furniture_image);
+        holder.furniture_title.setText(mData.get(position).getFurnitureName());
+        holder.furniture_brand.setText(mData.get(position).getFurnitureBrand());
+        holder.furniture_price.setText(mData.get(position).getFurniturePrice());
+        holder.furniture_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext, FurnitureDetails.class);
+                intent.putExtra("Furniture", mData.get(position));
+                mContext.startActivity(intent);
+
+            }
+        });
         Glide.with(mContext)
                 .asBitmap()
                 .load(mData.get(position).getFurnitureBrandLogoUrl())
@@ -47,7 +61,7 @@ public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<Rec
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
