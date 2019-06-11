@@ -29,7 +29,7 @@ public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<Rec
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.furniture_type_and_cards, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.furniture_cards, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

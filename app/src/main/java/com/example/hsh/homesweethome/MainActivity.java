@@ -1,6 +1,5 @@
 package com.example.hsh.homesweethome;
 
-import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,32 +14,21 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.network.APIService;
 import com.example.hsh.homesweethome.network.Utils;
-import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 
-import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,8 +37,10 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView myrv ;
-    private RecyclerViewAdapterMain mAdapter;
+    private RecyclerView verticalRecyclerView;
+    private RecyclerView horizontalRecyclerView;
+    private RecyclerViewAdapterMain verticalAdapter;
+    private RecyclerViewAdapterHorizontalCards horizontalAdapter;
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
@@ -58,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     private String TAG  = "MainActivity";
     private APIService mAPIService;
 
-    private List<Furniture> furnitures = new ArrayList<>();
+    private ArrayList<Furniture> furnitures = new ArrayList<>();
 
     private Unbinder unbinder;
 
@@ -74,13 +64,11 @@ public class MainActivity extends AppCompatActivity
 
         unbinder = ButterKnife.bind(this);
 
-        myrv = findViewById(R.id.recyclerview_id);
-        mAdapter = new RecyclerViewAdapterMain(getApplicationContext(), furnitures);
+        verticalRecyclerView = findViewById(R.id.recyclerview_id);
+        verticalAdapter = new RecyclerViewAdapterMain(getApplicationContext(), furnitures);
 
-        myrv.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        //Change to Linear Layout
-        //myrv.setLayoutManager(new LinearLayoutManager(this));
-        myrv.setAdapter(mAdapter);
+        verticalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        verticalRecyclerView.setAdapter(verticalAdapter);
 
         mAPIService = Utils.getAPIService();
         Call<List<Furniture>> call = mAPIService.getFurnitures();
@@ -133,7 +121,7 @@ public class MainActivity extends AppCompatActivity
                 if (response.isSuccessful()) {
                     Log.e(TAG, response.body().toString());
                     furnitures.addAll(response.body());
-                    mAdapter.notifyDataSetChanged();
+                    verticalAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -215,7 +203,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onNext(TextViewTextChangeEvent textViewTextChangeEvent) {
                 Log.d(TAG, "Search query: " + textViewTextChangeEvent.text());
-                mAdapter.getFilter().filter(textViewTextChangeEvent.text());
+                verticalAdapter.getFilter().filter(textViewTextChangeEvent.text());
                 publishSubject.onNext(textViewTextChangeEvent.text().toString());
             }
 
@@ -237,7 +225,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onNext(List<Furniture> furnitures) {
                 furnitures.addAll(furnitures);
-                mAdapter.notifyDataSetChanged();
+                verticalAdapter.notifyDataSetChanged();
             }
 
             @Override
