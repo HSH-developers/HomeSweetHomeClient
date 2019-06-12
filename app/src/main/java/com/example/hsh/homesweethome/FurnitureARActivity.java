@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.hsh.homesweethome.Models.Furniture;
@@ -19,7 +21,10 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.animation.ModelAnimator;
 import com.google.ar.sceneform.assets.RenderableSource;
+import com.google.ar.sceneform.math.Quaternion;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
@@ -33,6 +38,10 @@ public class FurnitureARActivity extends AppCompatActivity {
     private static final String TAG = FurnitureARActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
     private Furniture furniture;
+    private Button animateButton;
+    private ModelAnimator modelAnimator;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,22 +56,74 @@ public class FurnitureARActivity extends AppCompatActivity {
             furniture = (Furniture) intent.getSerializableExtra("Furniture");
         }
 
-        GLB_ASSET = "https://models-furnitures.s3-ap-southeast-1.amazonaws.com/Model12.glb";
-
+        GLB_ASSET = furniture.getFurnitureModelUrl();
         setContentView(R.layout.ar_fragment);
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
+        animateButton = findViewById(R.id.animate);
 
+        arFragment.setOnTapArPlaneListener(
+                (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
+
+                    // Create the Anchor.
+                    Anchor anchor = hitResult.createAnchor();
+                    placeModel(anchor, plane);
+                });
+    }
+
+    private void addNodeToScene(ModelRenderable modelRenderable, Anchor anchor, Plane plane) {
+
+        if (modelRenderable == null) {
+            return;
+        }
+
+        AnchorNode anchorFurnitureNode = new AnchorNode(anchor);
+        anchorFurnitureNode.setParent(arFragment.getArSceneView().getScene());
+        if (plane.getType() == Plane.Type.HORIZONTAL_UPWARD_FACING) {
+            Vector3 anchorUp = anchorFurnitureNode.getUp();
+            anchorFurnitureNode.setLookDirection(Vector3.up(), anchorUp);
+        }
+
+        // Create the transformable furniture and add it to the anchor.
+        TransformableNode transformableFurniture = new TransformableNode(arFragment.getTransformationSystem());
+        transformableFurniture.setParent(anchorFurnitureNode);
+        transformableFurniture.setRenderable(modelRenderable);
+        transformableFurniture.select();
+
+        animateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animateModel(modelRenderable, anchorFurnitureNode);
+            }
+        });
+
+
+    }
+
+    private void animateModel(ModelRenderable modelRenderable, AnchorNode node) {
+        if (modelAnimator != null && modelAnimator.isRunning()) {
+            modelAnimator.end();
+        }
+
+        Quaternion q1 = node.getLocalRotation();
+        Quaternion q2 = Quaternion.axisAngle(new Vector3(0, 1f, 0f), .2f);
+        node.setLocalRotation(Quaternion.multiply(q1, q2));
+
+    }
+
+
+
+    private void placeModel(Anchor anchor, Plane plane) {
         ModelRenderable.builder()
                 .setSource(this, RenderableSource.builder().setSource(
                         this,
                         Uri.parse(GLB_ASSET),
                         RenderableSource.SourceType.GLB)
-                        .setScale(0.5f)  // Scale the original model to 50%.
+                        .setScale(0.01f)  // Scale the original model to 50%.
                         .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                         .build())
                 .setRegistryId(GLB_ASSET)
                 .build()
-                .thenAccept(renderable -> modelRenderable = renderable)
+                .thenAccept(renderable -> addNodeToScene(renderable, anchor, plane))
                 .exceptionally(
                         throwable -> {
                             Toast toast =
@@ -72,24 +133,6 @@ public class FurnitureARActivity extends AppCompatActivity {
                             toast.show();
                             return null;
                         });
-
-        arFragment.setOnTapArPlaneListener(
-                (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (modelRenderable == null) {
-                        return;
-                    }
-
-                    // Create the Anchor.
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-                    // Create the transformable andy and add it to the anchor.
-                    TransformableNode andy = new TransformableNode(arFragment.getTransformationSystem());
-                    andy.setParent(anchorNode);
-                    andy.setRenderable(modelRenderable);
-                    andy.select();
-                });
     }
 
     /**
