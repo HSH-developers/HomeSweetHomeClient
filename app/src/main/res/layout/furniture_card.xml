@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/furnitureCard"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/transparent"
     android:layout_width="170dp"
-    android:layout_height="160dp"
+    android:layout_height="wrap_content"
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     cardview:cardCornerRadius="8dp">
@@ -12,23 +14,50 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/furnitureImgCard"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:scaleType="centerCrop"
-            android:background="#2d2d2d"/>
+            android:background="#ffff"/>
 
-        <TextView
-            android:id="@+id/furnitureTitleCard"
-            android:textColor="#2d2d2d"
-            android:textSize="13sp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Furniture Title"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <android.support.v4.widget.CircleImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ar_icon"
+                android:id="@+id/furnitureBrandLogoCard"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/furnitureTitleCard"
+                    android:textColor="#2d2d2d"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Furniture Name" />
+                <TextView
+                    android:id="@+id/furnitureBrandCard"
+                    android:textColor="#2d2d2d"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Furniture Brand" />
+                <TextView
+                    android:id="@+id/furniturePriceCard"
+                    android:textColor="#2d2d2d"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Furniture Price" />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
