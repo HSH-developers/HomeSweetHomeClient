@@ -16,13 +16,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
+import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.network.APIService;
 import com.example.hsh.homesweethome.network.Utils;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     private APIService mAPIService;
 
     private ArrayList<Furniture> furnitures = new ArrayList<>();
+    private ArrayList<CategoryFurniture> categories = new ArrayList<>();
 
     private Unbinder unbinder;
 
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         unbinder = ButterKnife.bind(this);
 
         verticalRecyclerView = findViewById(R.id.recyclerview_id);
-        verticalAdapter = new RecyclerViewAdapterMain(getApplicationContext(), furnitures);
+        verticalAdapter = new RecyclerViewAdapterMain(getApplicationContext(), categories, new ArrayList<>());
 
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         verticalRecyclerView.setAdapter(verticalAdapter);
@@ -120,7 +124,21 @@ public class MainActivity extends AppCompatActivity
             public void onResponse(Call<List<Furniture>> call, Response<List<Furniture>> response) {
                 if (response.isSuccessful()) {
                     Log.e(TAG, response.body().toString());
-                    furnitures.addAll(response.body());
+                    HashMap<String, ArrayList<Furniture>> splitFurnitures = new HashMap<>();
+                    for(Furniture furniture : response.body()) {
+                        if (splitFurnitures.get(furniture.getFurnitureCategory()) != null) {
+                            splitFurnitures.get(furniture.getFurnitureCategory()).add(furniture);
+                        } else {
+                            ArrayList<Furniture> furnitures = new ArrayList<>();
+                            furnitures.add(furniture);
+                            splitFurnitures.put(furniture.getFurnitureCategory(), furnitures);
+                        }
+                    }
+
+                    for (String furnitureCategory : splitFurnitures.keySet()) {
+                        categories.add(new CategoryFurniture(furnitureCategory, splitFurnitures.get(furnitureCategory)));
+                    }
+
                     verticalAdapter.notifyDataSetChanged();
                 }
             }

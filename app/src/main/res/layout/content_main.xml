@@ -24,14 +24,14 @@
         app:floatingSearch_leftActionMode="showSearch"
         app:floatingSearch_close_search_on_keyboard_dismiss="true">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="137dp"
-            android:layout_marginTop="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/main_page_banner"
-            android:contentDescription="TODO" />
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="137dp"-->
+            <!--android:layout_marginTop="50dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:src="@drawable/main_page_banner"-->
+            <!--android:contentDescription="TODO" />-->
 
 
         <android.support.v7.widget.RecyclerView

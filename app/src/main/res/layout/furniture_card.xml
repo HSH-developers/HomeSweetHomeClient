@@ -26,11 +26,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <android.support.v4.widget.CircleImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/furnitureBrandLogoCard"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/ar_icon"
-                android:id="@+id/furnitureBrandLogoCard"/>
+                android:src="@drawable/ar_icon" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

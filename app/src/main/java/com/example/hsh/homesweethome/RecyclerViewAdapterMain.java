@@ -15,6 +15,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.squareup.picasso.Picasso;
 
@@ -24,13 +25,14 @@ public class RecyclerViewAdapterMain
         extends RecyclerView.Adapter<RecyclerViewAdapterMain.MyViewHolder> implements Filterable{
 
     private Context mContext ;
-    private ArrayList<Furniture> mData ;
-    private ArrayList<Furniture> mDataFiltered;
+    private ArrayList<CategoryFurniture> mData ;
+    private ArrayList<CategoryFurniture> mDataFiltered;
 
-    public RecyclerViewAdapterMain(Context mContext, ArrayList<Furniture> mData) {
+
+    public RecyclerViewAdapterMain(Context mContext, ArrayList<CategoryFurniture> mData, ArrayList<CategoryFurniture> mDataFiltered) {
         this.mContext = mContext;
         this.mData = mData;
-        this.mDataFiltered = mData;
+        this.mDataFiltered = mDataFiltered;
     }
 
     @NonNull
@@ -44,32 +46,16 @@ public class RecyclerViewAdapterMain
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        RecyclerViewAdapterHorizontalCards horizontalCards = new RecyclerViewAdapterHorizontalCards(mData, mContext);
+        RecyclerViewAdapterHorizontalCards horizontalCards = new RecyclerViewAdapterHorizontalCards(mData.get(position).getFurnitures(), mContext);
         holder.horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         holder.horizontalRecyclerView.setAdapter(horizontalCards);
-        holder.furniture_category.setText(mDataFiltered.get(position).getFurnitureCategory());
-
-        String UriString = mDataFiltered.get(position).getFurnitureImageUrl();
-        if(UriString!=null){
-            Uri uri = Uri.parse(UriString);
-            Picasso.get().load(uri).into(holder.furniture_image);
-        }
-
-        holder.furniture_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, FurnitureDetails.class);
-                intent.putExtra("Furniture", mDataFiltered.get(position));
-                mContext.startActivity(intent);
-            }
-        });
-
+        holder.furniture_category.setText(mData.get(position).getFurnitureCategory());
 
     }
 
     @Override
     public int getItemCount() {
-        return mDataFiltered.size();
+        return mData.size();
     }
 
     @Override
@@ -81,13 +67,15 @@ public class RecyclerViewAdapterMain
                 if (charString.isEmpty()) {
                     mDataFiltered = mData;
                 } else {
-                    ArrayList<Furniture> filteredList = new ArrayList<>();
-                    for (Furniture row : mData) {
+                    ArrayList<CategoryFurniture> filteredList = new ArrayList<>();
+                    for (CategoryFurniture category : mData) {
+                        for (Furniture row : category.getFurnitures()) {
+                            // name match condition. this might differ depending on your requirement
+                            // here we are looking for name or phone number match
+                            if (row.getFurnitureBrand().toLowerCase().contains(charString.toLowerCase()) || row.getFurnitureName().contains(charSequence) || row.getFurnitureType().contains(charSequence)) {
+                                filteredList.add(category);
+                            }
 
-                        // name match condition. this might differ depending on your requirement
-                        // here we are looking for name or phone number match
-                        if (row.getFurnitureBrand().toLowerCase().contains(charString.toLowerCase()) || row.getFurnitureName().contains(charSequence) || row.getFurnitureType().contains(charSequence)) {
-                            filteredList.add(row);
                         }
                     }
 
@@ -101,7 +89,7 @@ public class RecyclerViewAdapterMain
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                mDataFiltered = (ArrayList<Furniture>) filterResults.values;
+                mDataFiltered = (ArrayList<CategoryFurniture>) filterResults.values;
                 notifyDataSetChanged();
             }
         };
@@ -109,9 +97,8 @@ public class RecyclerViewAdapterMain
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         RecyclerView horizontalRecyclerView;
-        TextView furniture_title, furniture_brand, furniture_price, furniture_category;
-        ImageView furniture_image, furniture_brand_logo;
-        CardView furniture_card, furniture_category_card;
+        TextView furniture_category;
+        CardView furniture_category_card;
 
 
         public MyViewHolder(View itemView) {
@@ -119,14 +106,6 @@ public class RecyclerViewAdapterMain
             horizontalRecyclerView = itemView.findViewById(R.id.furnitureCards);
             furniture_category = itemView.findViewById(R.id.furnitureTypeCardText);
             furniture_category_card = itemView.findViewById(R.id.furnitureTypeCard);
-            furniture_title = itemView.findViewById(R.id.furnitureTitleCard);
-            furniture_brand = itemView.findViewById(R.id.furnitureBrandCard);
-            furniture_price = itemView.findViewById(R.id.furniturePriceCard);
-            furniture_brand_logo = itemView.findViewById(R.id.furnitureBrandLogoCard);
-            furniture_image = itemView.findViewById(R.id.furnitureImgCard);
-            furniture_card = itemView.findViewById(R.id.furnitureCard);
-
-
 
         }
     }

@@ -29,7 +29,7 @@ public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<Rec
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.furniture_cards, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.furniture_card, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -42,7 +42,7 @@ public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<Rec
                 .into(holder.furniture_image);
         holder.furniture_title.setText(mData.get(position).getFurnitureName());
         holder.furniture_brand.setText(mData.get(position).getFurnitureBrand());
-        holder.furniture_price.setText(mData.get(position).getFurniturePrice());
+        holder.furniture_price.setText(mData.get(position).getFurniturePrice().toString());
         holder.furniture_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
