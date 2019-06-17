@@ -49,6 +49,7 @@ public class RecyclerViewAdapterMain
         RecyclerViewAdapterHorizontalCards horizontalCards = new RecyclerViewAdapterHorizontalCards(mData.get(position).getFurnitures(), mContext);
         holder.horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         holder.horizontalRecyclerView.setAdapter(horizontalCards);
+
         holder.furniture_category.setText(mData.get(position).getFurnitureCategory());
 
     }

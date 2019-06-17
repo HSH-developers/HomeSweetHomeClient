@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.hsh.homesweethome.Models.Furniture;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<RecyclerViewAdapterHorizontalCards.ViewHolder>{
 
     private ArrayList<Furniture> mData = new ArrayList<>();
     private Context mContext;
+    private String TAG = "HorizontalCards";
 
     public RecyclerViewAdapterHorizontalCards(ArrayList<Furniture> mData, Context mContext) {
         this.mData = mData;
@@ -40,6 +45,22 @@ public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<Rec
                 .asBitmap()
                 .load(mData.get(position).getFurnitureImageUrl())
                 .into(holder.furniture_image);
+
+
+        Picasso.get()
+                .load(mData.get(position).getFurnitureBrandImageUrl())
+                .fit()
+                .centerInside()
+                .into(holder.furniture_brand_logo);
+
+//        Glide.with(mContext)
+//                .asBitmap()
+//                .load(mData.get(position).getFurnitureBrandImageUrl())
+//                .into(holder.furniture_brand_logo);
+
+
+        Log.e(TAG, mData.get(position).getFurnitureBrandImageUrl());
+
         holder.furniture_title.setText(mData.get(position).getFurnitureName());
         holder.furniture_brand.setText(mData.get(position).getFurnitureBrand());
         holder.furniture_price.setText(mData.get(position).getFurniturePrice().toString());
@@ -53,10 +74,6 @@ public class RecyclerViewAdapterHorizontalCards extends RecyclerView.Adapter<Rec
 
             }
         });
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mData.get(position).getFurnitureBrandLogoUrl())
-                .into(holder.furniture_brand_logo);
     }
 
     @Override
