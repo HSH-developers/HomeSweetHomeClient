@@ -1,9 +1,16 @@
 package com.example.hsh.homesweethome;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +27,7 @@ import com.example.hsh.homesweethome.Models.Furniture;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RecyclerViewAdapterMain
         extends RecyclerView.Adapter<RecyclerViewAdapterMain.MyViewHolder> implements Filterable{
@@ -27,6 +35,7 @@ public class RecyclerViewAdapterMain
     private Context mContext ;
     private ArrayList<CategoryFurniture> mData ;
     private ArrayList<CategoryFurniture> mDataFiltered;
+
 
 
     public RecyclerViewAdapterMain(Context mContext, ArrayList<CategoryFurniture> mData, ArrayList<CategoryFurniture> mDataFiltered) {
@@ -51,6 +60,21 @@ public class RecyclerViewAdapterMain
         holder.horizontalRecyclerView.setAdapter(horizontalCards);
 
         holder.furniture_category.setText(mData.get(position).getFurnitureCategory());
+        holder.furniture_category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) mContext;
+                FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+                Fragment furnitureCategoryFragment = new FurnitureCategoryFragment();
+                Bundle fragArgs = new Bundle();
+                CategoryFurniture categoryFurniture = mData.get(position);
+                fragArgs.putSerializable("category_furnitures", categoryFurniture);
+                fragArgs.putStringArrayList("locations", new ArrayList<>(Arrays.asList("Living Room", "Bedroom", "Kitchen", "Outdoor")));
+                furnitureCategoryFragment.setArguments(fragArgs);
+
+                ft.replace(R.id.fragment_container, furnitureCategoryFragment).addToBackStack(null).commit();
+            }
+        });
 
     }
 

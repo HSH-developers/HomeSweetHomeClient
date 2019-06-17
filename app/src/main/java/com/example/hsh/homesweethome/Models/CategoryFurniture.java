@@ -1,10 +1,19 @@
 package com.example.hsh.homesweethome.Models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CategoryFurniture {
+public class CategoryFurniture implements Serializable {
 
+    @Expose
+    @SerializedName("furnitureCategory")
     private String furnitureCategory;
+
+    @Expose
+    @SerializedName("furnitures")
     private ArrayList<Furniture> furnitures = new ArrayList<>();
 
     public CategoryFurniture(String furnitureCategory, ArrayList<Furniture> furnitures) {

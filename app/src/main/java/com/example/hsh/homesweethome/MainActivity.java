@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         unbinder = ButterKnife.bind(this);
 
         verticalRecyclerView = findViewById(R.id.recyclerview_id);
-        verticalAdapter = new RecyclerViewAdapterMain(getApplicationContext(), categories, new ArrayList<>());
+        verticalAdapter = new RecyclerViewAdapterMain(this, categories, new ArrayList<>());
 
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         verticalRecyclerView.setAdapter(verticalAdapter);

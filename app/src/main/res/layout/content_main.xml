@@ -24,23 +24,30 @@
         app:floatingSearch_leftActionMode="showSearch"
         app:floatingSearch_close_search_on_keyboard_dismiss="true">
 
-        <ImageView
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="137dp"
-            android:layout_marginTop="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/main_page_banner"
-            android:contentDescription="TODO" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="137dp"
+                android:layout_marginTop="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/main_page_banner"
+                android:contentDescription="TODO" />
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_id"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            android:layout_marginTop="170dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:layout_marginTop="170dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        </FrameLayout>
 
     </com.arlib.floatingsearchview.FloatingSearchView>
 
