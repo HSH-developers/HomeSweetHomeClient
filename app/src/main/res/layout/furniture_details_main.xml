@@ -201,28 +201,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/care_instruction"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_margin="5dp"
-                android:orientation="vertical" >
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <TextView
-                        android:id="@+id/care_instruction_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Coming..."
-                        android:layout_centerInParent="true" />
-                </RelativeLayout>
-            </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/reviews"
                 android:layout_width="match_parent"

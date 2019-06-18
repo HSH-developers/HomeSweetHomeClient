@@ -80,8 +80,7 @@ public class FurnitureDetailsMainFragment extends Fragment {
         furnitureCategory = view.findViewById(R.id.basic_specification_category_result);
         tabLayout = view.findViewById(R.id.tab_layout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Basic Specification"));
-        tabLayout.addTab(tabLayout.newTab().setText("Care Instruction"));
+        tabLayout.addTab(tabLayout.newTab().setText("Specifications"));
         tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
         tabLayout.addTab(tabLayout.newTab().setText("More Like this"));
 
@@ -115,7 +114,6 @@ public class FurnitureDetailsMainFragment extends Fragment {
         gestureDetector = new GestureDetector(new MyGestureDetector());
 
         basicSpecification =  view.findViewById(R.id.basic_specification);
-        careInstruction = view.findViewById(R.id.care_instruction);
         review = view.findViewById(R.id.reviews);
         moreLikeThis = view.findViewById(R.id.more_like_this);
 
@@ -125,12 +123,10 @@ public class FurnitureDetailsMainFragment extends Fragment {
         params = new LinearLayout.LayoutParams(mWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         basicSpecification.setLayoutParams(params);
-        careInstruction.setLayoutParams(params);
         review.setLayoutParams(params);
         moreLikeThis.setLayoutParams(params);
 
         layouts.add(basicSpecification);
-        layouts.add(careInstruction);
         layouts.add(review);
         layouts.add(moreLikeThis);
 
