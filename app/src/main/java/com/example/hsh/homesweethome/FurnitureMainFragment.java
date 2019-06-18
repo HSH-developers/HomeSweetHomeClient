@@ -63,9 +63,11 @@ public class FurnitureMainFragment extends Fragment {
 
         verticalRecyclerView = view.findViewById(R.id.recyclerview_id);
         verticalAdapter = new RecyclerViewAdapterMain(getActivity(), categories, new ArrayList<>());
+        verticalAdapter.setHasStableIds(true);
 
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         verticalRecyclerView.setAdapter(verticalAdapter);
+        verticalAdapter.clearData();
 
         call.enqueue(new Callback<List<Furniture>>() {
             @Override
@@ -86,7 +88,6 @@ public class FurnitureMainFragment extends Fragment {
                     for (String furnitureCategory : splitFurnitures.keySet()) {
                         categories.add(new CategoryFurniture(furnitureCategory, splitFurnitures.get(furnitureCategory)));
                     }
-
                     verticalAdapter.notifyDataSetChanged();
                 }
             }

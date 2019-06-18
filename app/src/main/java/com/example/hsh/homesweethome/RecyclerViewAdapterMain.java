@@ -83,6 +83,10 @@ public class RecyclerViewAdapterMain
         return mData.size();
     }
 
+    public void clearData() {
+        mData.clear();
+    }
+
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -134,5 +138,6 @@ public class RecyclerViewAdapterMain
 
         }
     }
+
 
 }
