@@ -2,6 +2,8 @@ package com.example.hsh.homesweethome;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,6 +25,7 @@ import com.example.hsh.homesweethome.network.Utils;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -40,42 +43,15 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView verticalRecyclerView;
-    private RecyclerView horizontalRecyclerView;
-    private RecyclerViewAdapterMain verticalAdapter;
-    private RecyclerViewAdapterHorizontalCards horizontalAdapter;
-
-    private CompositeDisposable disposable = new CompositeDisposable();
-
-    private PublishSubject<String> publishSubject = PublishSubject.create();
     private String TAG  = "MainActivity";
-    private APIService mAPIService;
-
-    private ArrayList<Furniture> furnitures = new ArrayList<>();
-    private ArrayList<CategoryFurniture> categories = new ArrayList<>();
-
-    private Unbinder unbinder;
 
     private FloatingSearchView mSearchView;
-
-//    @BindView(R.id.search_bar)
-//    EditText searchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        unbinder = ButterKnife.bind(this);
-
-        verticalRecyclerView = findViewById(R.id.recyclerview_id);
-        verticalAdapter = new RecyclerViewAdapterMain(this, categories, new ArrayList<>());
-
-        verticalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        verticalRecyclerView.setAdapter(verticalAdapter);
-
-        mAPIService = Utils.getAPIService();
-        Call<List<Furniture>> call = mAPIService.getFurnitures();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setElevation(4);
@@ -88,100 +64,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //SearchView to be tied to backend
-//        mSearchView = findViewById(R.id.search_bar);
-//
-//        mSearchView.getQuery();
-//
-//        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
-//            @Override
-//            public void onSearchTextChanged(String oldQuery, String newQuery) {
-//
-//            }
-//        });
-//
-//        mSearchView.setOnLeftMenuClickListener(new FloatingSearchView.OnLeftMenuClickListener() {
-//            @Override
-//            public void onMenuOpened() {
-//
-//            }
-//
-//            @Override
-//            public void onMenuClosed() {
-//
-//            }
-//        });
-//
-//        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
-//            @Override
-//            public void onSearchTextChanged(String oldQuery, String newQuery) {
-//
-//            }
-//        });
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FurnitureMainFragment furnitureMainFragment = new FurnitureMainFragment();
 
-        call.enqueue(new Callback<List<Furniture>>() {
-            @Override
-            public void onResponse(Call<List<Furniture>> call, Response<List<Furniture>> response) {
-                if (response.isSuccessful()) {
-                    Log.e(TAG, response.body().toString());
-                    HashMap<String, ArrayList<Furniture>> splitFurnitures = new HashMap<>();
-                    for(Furniture furniture : response.body()) {
-                        if (splitFurnitures.get(furniture.getFurnitureCategory()) != null) {
-                            splitFurnitures.get(furniture.getFurnitureCategory()).add(furniture);
-                        } else {
-                            ArrayList<Furniture> furnitures = new ArrayList<>();
-                            furnitures.add(furniture);
-                            splitFurnitures.put(furniture.getFurnitureCategory(), furnitures);
-                        }
-                    }
-
-                    for (String furnitureCategory : splitFurnitures.keySet()) {
-                        categories.add(new CategoryFurniture(furnitureCategory, splitFurnitures.get(furnitureCategory)));
-                    }
-
-                    verticalAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Furniture>> call, Throwable t) {
-                Log.e(TAG, t.getMessage());
-
-            }
-        });
-
-//        DisposableObserver<List<Furniture>> observer = getSearchObserver();
-//
-//        disposable.add(
-//                publishSubject
-//                        .debounce(300, TimeUnit.MILLISECONDS)
-//                        .distinctUntilChanged()
-//                        .switchMapSingle(new Function<String, Single<List<Furniture>>>() {
-//                            @Override
-//                            public Single<List<Furniture>> apply(String s) throws Exception {
-//                                return mAPIService.getQueryFurnitures(20, s)
-//                                        .subscribeOn(Schedulers.io())
-//                                        .observeOn(AndroidSchedulers.mainThread());
-//                            }
-//                        })
-//                        .subscribeWith(observer));
-//
-//        disposable.add(RxTextView.textChangeEvents(mSearchView)
-//                .skipInitialValue()
-//                .debounce(300, TimeUnit.MILLISECONDS)
-//                /*.filter(new Predicate<TextViewTextChangeEvent>() {
-//                    @Override
-//                    public boolean test(TextViewTextChangeEvent textViewTextChangeEvent) throws Exception {
-//                        return TextUtils.isEmpty(textViewTextChangeEvent.text().toString()) || textViewTextChangeEvent.text().toString().length() > 2;
-//                    }
-//                })*/
-//                .distinctUntilChanged()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeWith(searchContacts()));
-//
-//        disposable.add(observer);
-
+        ft.replace(R.id.fragment_container, furnitureMainFragment).addToBackStack(null).commit();
     }
 
     @Override
@@ -196,66 +82,19 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private DisposableObserver<TextViewTextChangeEvent> searchContacts() {
-        return new DisposableObserver<TextViewTextChangeEvent>() {
-            @Override
-            public void onNext(TextViewTextChangeEvent textViewTextChangeEvent) {
-                Log.d(TAG, "Search query: " + textViewTextChangeEvent.text());
-                verticalAdapter.getFilter().filter(textViewTextChangeEvent.text());
-                publishSubject.onNext(textViewTextChangeEvent.text().toString());
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "onError: " + e.getMessage());
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
-    }
-
-
-    private DisposableObserver<List<Furniture>> getSearchObserver() {
-        return new DisposableObserver<List<Furniture>>() {
-            @Override
-            public void onNext(List<Furniture> furnitures) {
-                furnitures.addAll(furnitures);
-                verticalAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "onError: " + e.getMessage());
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
     }
 
     @Override
@@ -267,4 +106,6 @@ public class MainActivity extends AppCompatActivity
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+
 }
