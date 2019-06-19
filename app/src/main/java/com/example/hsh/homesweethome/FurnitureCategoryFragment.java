@@ -13,12 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
 
 import java.util.ArrayList;
+
+import okhttp3.Interceptor;
 
 import static com.google.sceneform_animation.bi.as;
 import static com.google.sceneform_animation.bi.f;
@@ -33,11 +36,13 @@ public class FurnitureCategoryFragment extends Fragment {
     private ArrayList<String> locations;
     private ImageView furnitureFilter;
     private CardView apply_button;
+    private SeekBar price_slider_bar;
 
     public FurnitureCategoryFragment() {
     }
 
     private CategoryFurniture categoryFurniture;
+    private Integer filteredPrice;
 
 
     @Nullable
@@ -70,15 +75,35 @@ public class FurnitureCategoryFragment extends Fragment {
 
         furnitureCategory.setText(categoryFurniture.getFurnitureCategory());
 
+
         furnitureFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialog filterDialog = new Dialog(getContext());
                 filterDialog.setContentView(R.layout.filter_dialog);
+
                 apply_button = filterDialog.findViewById(R.id.apply_button);
+                price_slider_bar = filterDialog.findViewById(R.id.price_slider_bar);
+                price_slider_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        filteredPrice = seekBar.getProgress()/100 * 1000;
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                        filteredPrice = seekBar.getProgress()/100 * 1000;
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        filteredPrice = seekBar.getProgress()/100 * 1000;
+                    }
+                });
                 apply_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        recyclerViewAdapterCategoryFurnitures.getFilter().filter(filteredPrice.toString());
                         filterDialog.dismiss();
                     }
                 });

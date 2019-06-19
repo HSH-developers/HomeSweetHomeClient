@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,19 +30,22 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class RecyclerViewAdapterMain
         extends RecyclerView.Adapter<RecyclerViewAdapterMain.MyViewHolder> implements Filterable{
 
     private Context mContext ;
     private ArrayList<CategoryFurniture> mData ;
     private ArrayList<CategoryFurniture> mDataFiltered;
+    private String TAG = "RecyclerViewAdapterMain";
 
 
 
-    public RecyclerViewAdapterMain(Context mContext, ArrayList<CategoryFurniture> mData, ArrayList<CategoryFurniture> mDataFiltered) {
+    public RecyclerViewAdapterMain(Context mContext, ArrayList<CategoryFurniture> mData) {
         this.mContext = mContext;
         this.mData = mData;
-        this.mDataFiltered = mDataFiltered;
+        this.mDataFiltered = mData;
     }
 
     @NonNull
@@ -55,11 +59,11 @@ public class RecyclerViewAdapterMain
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        RecyclerViewAdapterHorizontalCards horizontalCards = new RecyclerViewAdapterHorizontalCards(mData.get(position).getFurnitures(), mContext);
+        RecyclerViewAdapterHorizontalCards horizontalCards = new RecyclerViewAdapterHorizontalCards(mDataFiltered.get(position).getFurnitures(), mContext);
         holder.horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         holder.horizontalRecyclerView.setAdapter(horizontalCards);
 
-        holder.furniture_category.setText(mData.get(position).getFurnitureCategory());
+        holder.furniture_category.setText(mDataFiltered.get(position).getFurnitureCategory());
         holder.furniture_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +71,7 @@ public class RecyclerViewAdapterMain
                 FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
                 Fragment furnitureCategoryFragment = new FurnitureCategoryFragment();
                 Bundle fragArgs = new Bundle();
-                CategoryFurniture categoryFurniture = mData.get(position);
+                CategoryFurniture categoryFurniture = mDataFiltered.get(position);
                 fragArgs.putSerializable("category_furnitures", categoryFurniture);
                 fragArgs.putStringArrayList("locations", new ArrayList<>(Arrays.asList("Living Room", "Bedroom", "Kitchen", "Outdoor")));
                 furnitureCategoryFragment.setArguments(fragArgs);
@@ -80,13 +84,24 @@ public class RecyclerViewAdapterMain
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        Log.e(TAG, "Item count: " + Integer.toString(mDataFiltered.size()));
+
+        for (int i = 0 ;i < mDataFiltered.size(); i++) {
+            Log.e(TAG, "Item count furnitures: " + Integer.toString(mDataFiltered.get(i).getFurnitures().size()));
+            for (Furniture furniture : mDataFiltered.get(i).getFurnitures()) {
+                Log.e(TAG, furniture.getFurnitureName());
+            }
+        }
+        return mDataFiltered.size();
     }
 
     public void clearData() {
-        mData.clear();
+        mDataFiltered.clear();
     }
 
+    /**
+     * TODO : Implement fuzzy search logic
+     */
     @Override
     public Filter getFilter() {
         return new Filter() {
@@ -98,14 +113,17 @@ public class RecyclerViewAdapterMain
                 } else {
                     ArrayList<CategoryFurniture> filteredList = new ArrayList<>();
                     for (CategoryFurniture category : mData) {
+                        CategoryFurniture filteredCategoryFurniture = new CategoryFurniture(category.getFurnitureCategory(), category.getFurnitures());
+                        ArrayList<Furniture> filteredFurnituresCategory = new ArrayList<>();
                         for (Furniture row : category.getFurnitures()) {
                             // name match condition. this might differ depending on your requirement
                             // here we are looking for name or phone number match
                             if (row.getFurnitureBrand().toLowerCase().contains(charString.toLowerCase()) || row.getFurnitureName().contains(charSequence) || row.getFurnitureType().contains(charSequence)) {
-                                filteredList.add(category);
+                                filteredFurnituresCategory.add(row);
                             }
-
                         }
+                        filteredCategoryFurniture.setFurnitures(filteredFurnituresCategory);
+                        filteredList.add(filteredCategoryFurniture);
                     }
 
                     mDataFiltered = filteredList;
@@ -119,6 +137,7 @@ public class RecyclerViewAdapterMain
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 mDataFiltered = (ArrayList<CategoryFurniture>) filterResults.values;
+                Log.e(TAG, "Notifying data set changed");
                 notifyDataSetChanged();
             }
         };

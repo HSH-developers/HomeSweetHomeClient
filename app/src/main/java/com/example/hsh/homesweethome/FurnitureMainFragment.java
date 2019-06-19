@@ -12,6 +12,10 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
@@ -43,6 +47,8 @@ public class FurnitureMainFragment extends Fragment {
     private PublishSubject<String> publishSubject = PublishSubject.create();
     private CompositeDisposable disposable = new CompositeDisposable();
 
+    private SearchView searchView;
+
     public FurnitureMainFragment() {
     }
 
@@ -62,12 +68,30 @@ public class FurnitureMainFragment extends Fragment {
         Call<List<Furniture>> call = mAPIService.getFurnitures();
 
         verticalRecyclerView = view.findViewById(R.id.recyclerview_id);
-        verticalAdapter = new RecyclerViewAdapterMain(getActivity(), categories, new ArrayList<>());
+        verticalAdapter = new RecyclerViewAdapterMain(getActivity(), categories);
         verticalAdapter.setHasStableIds(true);
 
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         verticalRecyclerView.setAdapter(verticalAdapter);
         verticalAdapter.clearData();
+
+        searchView = getActivity().findViewById(R.id.search_view);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                verticalAdapter.getFilter().filter(query);
+                Log.e(TAG, "Submitting query");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.e(TAG, "Changing query");
+                verticalAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         call.enqueue(new Callback<List<Furniture>>() {
             @Override
@@ -98,6 +122,10 @@ public class FurnitureMainFragment extends Fragment {
 
             }
         });
+
+        /**
+         * TODO : Implement a search view that debounces a network call when our database size increases in the future
+         */
 
         //SearchView to be tied to backend
 //        mSearchView = findViewById(R.id.search_bar);

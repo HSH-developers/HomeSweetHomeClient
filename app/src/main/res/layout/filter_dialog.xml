@@ -41,8 +41,11 @@
                     android:text="Price"/>
 
                 <SeekBar
+                    android:id="@+id/price_slider_bar"
                     android:layout_margin="10dp"
                     android:layout_width="match_parent"
+                    android:min="0"
+                    android:max="100"
                     android:layout_height="wrap_content" />
 
 
