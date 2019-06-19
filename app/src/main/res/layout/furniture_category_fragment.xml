@@ -36,6 +36,7 @@
                 android:text="Category Name"/>
 
             <ImageView
+                android:id="@+id/filter_furniture"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:layout_marginRight="20sp"
