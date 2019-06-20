@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +19,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapterCategoryFurnitures extends RecyclerView.Adapter<RecyclerViewAdapterCategoryFurnitures.FurnitureViewHolder> implements Filterable{
+public class RecyclerViewAdapterFurniture extends RecyclerView.Adapter<RecyclerViewAdapterFurniture.FurnitureViewHolder> implements Filterable{
 
 
     private Context mContext;
     private ArrayList<Furniture> mData;
     private ArrayList<Furniture> mDataFiltered;
 
-    public RecyclerViewAdapterCategoryFurnitures(Context mContext, ArrayList<Furniture> mData) {
+    public RecyclerViewAdapterFurniture(Context mContext, ArrayList<Furniture> mData) {
         this.mContext = mContext;
         this.mData = mData;
         this.mDataFiltered = mData;
@@ -44,16 +43,15 @@ public class RecyclerViewAdapterCategoryFurnitures extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(@NonNull FurnitureViewHolder holder, int position) {
 
-        Glide.with(mContext)
-                .asBitmap()
+        Picasso.get()
                 .load(mDataFiltered.get(position).getFurnitureImageUrl())
+                .fit()
                 .into(holder.furniture_image);
 
 
         Picasso.get()
                 .load(mDataFiltered.get(position).getFurnitureBrandImageUrl())
                 .fit()
-                .centerInside()
                 .into(holder.furniture_brand_logo);
 
 

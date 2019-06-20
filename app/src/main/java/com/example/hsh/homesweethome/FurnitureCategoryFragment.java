@@ -17,22 +17,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
-import com.example.hsh.homesweethome.Models.Furniture;
 
 import java.util.ArrayList;
-
-import okhttp3.Interceptor;
-
-import static com.google.sceneform_animation.bi.as;
-import static com.google.sceneform_animation.bi.f;
 
 public class FurnitureCategoryFragment extends Fragment {
 
     private TextView furnitureCategory;
     private RecyclerView locationsHorizontalRecyclerView;
     private RecyclerView categoryFurnitureRecyclerView;
-    private RecyclerViewAdapterCategoryFurnitures recyclerViewAdapterCategoryFurnitures;
-    private RecyclerViewAdapterHorizontalLocations recyclerViewAdapterHorizontalLocations;
+    private RecyclerViewAdapterFurniture recyclerViewAdapterFurniture;
+    private RecyclerViewAdapterLocations recyclerViewAdapterLocations;
     private ArrayList<String> locations;
     private ImageView furnitureFilter;
     private CardView apply_button;
@@ -66,11 +60,11 @@ public class FurnitureCategoryFragment extends Fragment {
         locationsHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         categoryFurnitureRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        recyclerViewAdapterHorizontalLocations = new RecyclerViewAdapterHorizontalLocations(getContext(), locations);
-        recyclerViewAdapterCategoryFurnitures = new RecyclerViewAdapterCategoryFurnitures(getContext(), categoryFurniture.getFurnitures());
+        recyclerViewAdapterLocations = new RecyclerViewAdapterLocations(getContext(), locations);
+        recyclerViewAdapterFurniture = new RecyclerViewAdapterFurniture(getContext(), categoryFurniture.getFurnitures());
 
-        locationsHorizontalRecyclerView.setAdapter(recyclerViewAdapterHorizontalLocations);
-        categoryFurnitureRecyclerView.setAdapter(recyclerViewAdapterCategoryFurnitures);
+        locationsHorizontalRecyclerView.setAdapter(recyclerViewAdapterLocations);
+        categoryFurnitureRecyclerView.setAdapter(recyclerViewAdapterFurniture);
         categoryFurnitureRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
         furnitureCategory.setText(categoryFurniture.getFurnitureCategory());
@@ -103,7 +97,7 @@ public class FurnitureCategoryFragment extends Fragment {
                 apply_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        recyclerViewAdapterCategoryFurnitures.getFilter().filter(filteredPrice.toString());
+                        recyclerViewAdapterFurniture.getFilter().filter(filteredPrice.toString());
                         filterDialog.dismiss();
                     }
                 });

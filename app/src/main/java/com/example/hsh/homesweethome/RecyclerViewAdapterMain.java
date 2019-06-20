@@ -2,13 +2,9 @@ package com.example.hsh.homesweethome;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -20,17 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class RecyclerViewAdapterMain
         extends RecyclerView.Adapter<RecyclerViewAdapterMain.MyViewHolder> implements Filterable{
@@ -59,7 +51,7 @@ public class RecyclerViewAdapterMain
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        RecyclerViewAdapterHorizontalCards horizontalCards = new RecyclerViewAdapterHorizontalCards(mDataFiltered.get(position).getFurnitures(), mContext);
+        RecyclerViewAdapterFurniture horizontalCards = new RecyclerViewAdapterFurniture(mContext, mDataFiltered.get(position).getFurnitures());
         holder.horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
         holder.horizontalRecyclerView.setAdapter(horizontalCards);
 

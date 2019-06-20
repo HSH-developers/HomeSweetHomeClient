@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapterHorizontalLocations extends RecyclerView.Adapter<RecyclerViewAdapterHorizontalLocations.CategoryViewHolder> {
+public class RecyclerViewAdapterLocations extends RecyclerView.Adapter<RecyclerViewAdapterLocations.CategoryViewHolder> {
 
     private Context mContext;
     private ArrayList<String> mData;
 
-    public RecyclerViewAdapterHorizontalLocations(Context mContext, ArrayList<String> mData) {
+    public RecyclerViewAdapterLocations(Context mContext, ArrayList<String> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
