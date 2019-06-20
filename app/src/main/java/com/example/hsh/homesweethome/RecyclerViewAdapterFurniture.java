@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,15 +19,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapterCategoryFurnitures extends RecyclerView.Adapter<RecyclerViewAdapterCategoryFurnitures.FurnitureViewHolder> {
+public class RecyclerViewAdapterFurniture extends RecyclerView.Adapter<RecyclerViewAdapterFurniture.FurnitureViewHolder> implements Filterable{
 
 
     private Context mContext;
     private ArrayList<Furniture> mData;
+    private ArrayList<Furniture> mDataFiltered;
 
-    public RecyclerViewAdapterCategoryFurnitures(Context mContext, ArrayList<Furniture> mData) {
+    public RecyclerViewAdapterFurniture(Context mContext, ArrayList<Furniture> mData) {
         this.mContext = mContext;
         this.mData = mData;
+        this.mDataFiltered = mData;
     }
 
     @NonNull
@@ -40,28 +43,27 @@ public class RecyclerViewAdapterCategoryFurnitures extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(@NonNull FurnitureViewHolder holder, int position) {
 
-        Glide.with(mContext)
-                .asBitmap()
-                .load(mData.get(position).getFurnitureImageUrl())
+        Picasso.get()
+                .load(mDataFiltered.get(position).getFurnitureImageUrl())
+                .fit()
                 .into(holder.furniture_image);
 
 
         Picasso.get()
-                .load(mData.get(position).getFurnitureBrandImageUrl())
+                .load(mDataFiltered.get(position).getFurnitureBrandImageUrl())
                 .fit()
-                .centerInside()
                 .into(holder.furniture_brand_logo);
 
 
-        holder.furniture_title.setText(mData.get(position).getFurnitureName());
-        holder.furniture_brand.setText(mData.get(position).getFurnitureBrand());
-        holder.furniture_price.setText(mData.get(position).getFurniturePrice().toString());
+        holder.furniture_title.setText(mDataFiltered.get(position).getFurnitureName());
+        holder.furniture_brand.setText(mDataFiltered.get(position).getFurnitureBrand());
+        holder.furniture_price.setText(mDataFiltered.get(position).getFurniturePrice().toString());
         holder.furniture_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(mContext, FurnitureDetails.class);
-                intent.putExtra("Furniture", mData.get(position));
+                intent.putExtra("Furniture", mDataFiltered.get(position));
                 mContext.startActivity(intent);
 
             }
@@ -70,7 +72,42 @@ public class RecyclerViewAdapterCategoryFurnitures extends RecyclerView.Adapter<
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mDataFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    mDataFiltered = mData;
+                } else {
+                    /**
+                     * TODO : Change the way the list is filtered, i want a lambda sorting function that filters it according to % of the slider bar
+                     */
+                    ArrayList<Furniture> filteredList = new ArrayList<>();
+                    Integer filteredPrice = Integer.parseInt(charString);
+                    for (Furniture furniture : mData) {
+                        if (furniture.getFurniturePrice() > filteredPrice) {
+                            filteredList.add(furniture);
+                        }
+                    }
+                    mDataFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mDataFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mDataFiltered = (ArrayList<Furniture>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public static class FurnitureViewHolder extends RecyclerView.ViewHolder {
