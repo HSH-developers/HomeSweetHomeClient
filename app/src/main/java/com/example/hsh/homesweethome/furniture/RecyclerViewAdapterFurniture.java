@@ -8,110 +8,41 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.hsh.homesweethome.details.FurnitureDetails;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.details.FurnitureDetails;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-
-public class RecyclerViewAdapterFurniture extends RecyclerView.Adapter<RecyclerViewAdapterFurniture.FurnitureViewHolder> implements Filterable{
+public class RecyclerViewAdapterFurniture extends RecyclerView.Adapter<RecyclerViewAdapterFurniture.FurnitureViewHolder>{
 
 
-    private Context mContext;
-    private ArrayList<Furniture> mData;
-    private ArrayList<Furniture> mDataFiltered;
+    private IRecyclerViewAdapterPresenter presenter;
 
-    public RecyclerViewAdapterFurniture(Context mContext, ArrayList<Furniture> mData) {
-        this.mContext = mContext;
-        this.mData = mData;
-        this.mDataFiltered = mData;
+    public RecyclerViewAdapterFurniture(IRecyclerViewAdapterPresenter presenter) {
+        this.presenter = presenter;
     }
 
     @NonNull
     @Override
     public FurnitureViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        View view = layoutInflater.inflate(R.layout.furniture_card, parent, false);
-        return new FurnitureViewHolder(view);
+        return new FurnitureViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.furniture_card, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull FurnitureViewHolder holder, int position) {
-
-        Picasso.get()
-                .load(mDataFiltered.get(position).getFurnitureImageUrl())
-                .fit()
-                .into(holder.furniture_image);
-
-
-        Picasso.get()
-                .load(mDataFiltered.get(position).getFurnitureBrandImageUrl())
-                .fit()
-                .into(holder.furniture_brand_logo);
-
-
-        holder.furniture_title.setText(mDataFiltered.get(position).getFurnitureName());
-        holder.furniture_brand.setText(mDataFiltered.get(position).getFurnitureBrand());
-        holder.furniture_price.setText(mDataFiltered.get(position).getFurniturePrice().toString());
-        holder.furniture_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(mContext, FurnitureDetails.class);
-                intent.putExtra("Furniture", mDataFiltered.get(position));
-                mContext.startActivity(intent);
-
-            }
-        });
+        presenter.onBindFurnitureViewAtPosition(position, holder);
     }
 
     @Override
     public int getItemCount() {
-        return mDataFiltered.size();
+        return presenter.getFurnitureCount();
     }
 
-    @Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    mDataFiltered = mData;
-                } else {
-                    /**
-                     * TODO : Change the way the list is filtered, i want a lambda sorting function that filters it according to % of the slider bar
-                     */
-                    ArrayList<Furniture> filteredList = new ArrayList<>();
-                    Integer filteredPrice = Integer.parseInt(charString);
-                    for (Furniture furniture : mData) {
-                        if (furniture.getFurniturePrice() > filteredPrice) {
-                            filteredList.add(furniture);
-                        }
-                    }
-                    mDataFiltered = filteredList;
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = mDataFiltered;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                mDataFiltered = (ArrayList<Furniture>) results.values;
-                notifyDataSetChanged();
-            }
-        };
-    }
-
-    public static class FurnitureViewHolder extends RecyclerView.ViewHolder {
+    public static class FurnitureViewHolder extends RecyclerView.ViewHolder implements RecyclerViewHolderFurniture{
 
         TextView furniture_title, furniture_brand, furniture_price;
         ImageView furniture_image, furniture_brand_logo;
@@ -125,6 +56,50 @@ public class RecyclerViewAdapterFurniture extends RecyclerView.Adapter<RecyclerV
             furniture_brand_logo = itemView.findViewById(R.id.furnitureBrandLogoCard);
             furniture_image = itemView.findViewById(R.id.furnitureImgCard);
             furniture_card = itemView.findViewById(R.id.furnitureCard);
+        }
+
+        @Override
+        public void setFurnitureTitle(String title) {
+            furniture_title.setText(title);
+        }
+
+        @Override
+        public void setFurnitureBrand(String brand) {
+            furniture_brand.setText(brand);
+        }
+
+        @Override
+        public void setFurniturePrice(String price) {
+            furniture_price.setText(price);
+        }
+
+        @Override
+        public void setOnClickListenerFurnitureCard(Context activityContext, Furniture furniture) {
+            furniture_card.setOnClickListener(v -> {
+
+                Intent intent = new Intent(activityContext, FurnitureDetails.class);
+                intent.putExtra("Furniture", furniture);
+                activityContext.startActivity(intent);
+            });
+
+        }
+
+        @Override
+        public void setFurnitureImage(String furnitureImageUrl) {
+            Picasso.get()
+                    .load(furnitureImageUrl)
+                    .fit()
+                    .into(furniture_image);
+
+        }
+
+        @Override
+        public void setFurnitureBrandImage(String furnitureBrandImageUrl) {
+            Picasso.get()
+                    .load(furnitureBrandImageUrl)
+                    .fit()
+                    .into(furniture_brand_logo);
+
         }
     }
 }
