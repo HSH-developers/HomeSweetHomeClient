@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.network;
+package com.example.hsh.homesweethome.Network;
 
 public class Utils {
 

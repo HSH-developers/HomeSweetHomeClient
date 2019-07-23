@@ -1,9 +1,9 @@
-package com.example.hsh.homesweethome.network.Interceptors;
+package com.example.hsh.homesweethome.Network.Interceptors;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.example.hsh.homesweethome.network.Models.Session;
+import com.example.hsh.homesweethome.Network.Models.Session;
 
 import java.io.IOException;
 

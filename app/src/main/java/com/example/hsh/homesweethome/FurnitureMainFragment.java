@@ -2,26 +2,20 @@ package com.example.hsh.homesweethome;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.SearchView;
-import android.widget.Toast;
 
-import com.example.hsh.homesweethome.Models.CategoryFurniture;
-import com.example.hsh.homesweethome.Models.Furniture;
-import com.example.hsh.homesweethome.network.APIService;
-import com.example.hsh.homesweethome.network.Utils;
+import com.example.hsh.homesweethome.Model.CategoryFurniture;
+import com.example.hsh.homesweethome.Model.Furniture;
+import com.example.hsh.homesweethome.Network.APIService;
+import com.example.hsh.homesweethome.Network.Utils;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
 import java.util.ArrayList;

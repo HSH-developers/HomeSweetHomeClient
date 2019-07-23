@@ -1,6 +1,6 @@
-package com.example.hsh.homesweethome.network;
+package com.example.hsh.homesweethome.Network;
 
-import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.Model.Furniture;
 
 import java.util.List;
 

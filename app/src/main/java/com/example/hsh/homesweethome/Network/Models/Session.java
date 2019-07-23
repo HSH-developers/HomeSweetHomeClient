@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.network.Models;
+package com.example.hsh.homesweethome.Network.Models;
 
 import android.app.Application;
 import android.content.Context;

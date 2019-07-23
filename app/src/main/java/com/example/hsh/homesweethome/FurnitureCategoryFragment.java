@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.hsh.homesweethome.Models.CategoryFurniture;
+import com.example.hsh.homesweethome.Model.CategoryFurniture;
 
 import java.util.ArrayList;
 

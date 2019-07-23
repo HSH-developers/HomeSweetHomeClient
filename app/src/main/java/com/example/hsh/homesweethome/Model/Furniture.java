@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.Models;
+package com.example.hsh.homesweethome.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

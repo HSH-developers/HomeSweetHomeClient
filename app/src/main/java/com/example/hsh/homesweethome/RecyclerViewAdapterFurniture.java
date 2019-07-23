@@ -13,8 +13,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.Model.Furniture;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

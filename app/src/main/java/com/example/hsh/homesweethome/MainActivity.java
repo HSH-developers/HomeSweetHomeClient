@@ -2,43 +2,17 @@ package com.example.hsh.homesweethome;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
-import com.example.hsh.homesweethome.Models.CategoryFurniture;
-import com.example.hsh.homesweethome.Models.Furniture;
-import com.example.hsh.homesweethome.network.APIService;
-import com.example.hsh.homesweethome.network.Utils;
-import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import io.reactivex.disposables.CompositeDisposable;
-
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.subjects.PublishSubject;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
