@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.furniture.view;
 
 
 import android.os.Bundle;
@@ -12,8 +12,10 @@ import android.widget.SearchView;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterMain;
 import com.example.hsh.homesweethome.furniture.presenter.FurnitureMainFragmentPresenter;
-import com.example.hsh.homesweethome.furniture.view.IFurnitureMainFragmentView;
+import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterMainPresenter;
+import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureMainFragmentView;
 
 import java.util.ArrayList;
 
@@ -65,7 +67,7 @@ public class FurnitureMainFragment extends FurnitureBaseFragment implements IFur
 
     @Override
     public void displayFurnitureRecyclerView(ArrayList<CategoryFurniture> categories) {
-        verticalAdapter = new RecyclerViewAdapterMain(getActivity(), categories);
+        verticalAdapter = new RecyclerViewAdapterMain(new RecyclerViewAdapterMainPresenter(categories, getContext()));
         verticalAdapter.setHasStableIds(true);
 
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));

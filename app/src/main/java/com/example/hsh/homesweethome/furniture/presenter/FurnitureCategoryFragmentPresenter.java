@@ -3,7 +3,8 @@ package com.example.hsh.homesweethome.furniture.presenter;
 import android.os.Bundle;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
-import com.example.hsh.homesweethome.furniture.view.IFurnitureCategoryFragmentView;
+import com.example.hsh.homesweethome.furniture.presenter.interfaces.IFurnitureCategoryFragmentPresenter;
+import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureCategoryFragmentView;
 
 import java.util.ArrayList;
 

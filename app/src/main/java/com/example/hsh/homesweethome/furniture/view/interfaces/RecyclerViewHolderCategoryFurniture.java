@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.furniture.view.interfaces;
 
 import android.content.Context;
 

@@ -3,17 +3,18 @@ package com.example.hsh.homesweethome.furniture.presenter;
 import android.content.Context;
 
 import com.example.hsh.homesweethome.Models.Furniture;
-import com.example.hsh.homesweethome.furniture.RecyclerViewHolderFurniture;
+import com.example.hsh.homesweethome.furniture.view.interfaces.RecyclerViewHolderFurniture;
+import com.example.hsh.homesweethome.furniture.presenter.interfaces.IRecyclerViewAdapterFurniturePresenter;
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapterPresenter implements IRecyclerViewAdapterPresenter {
+public class RecyclerViewAdapterFurnitureFurniturePresenter implements IRecyclerViewAdapterFurniturePresenter {
 
     private ArrayList<com.example.hsh.homesweethome.Models.Furniture> furniture;
     private ArrayList<Furniture> furnitureFiltered;
     private Context activityContext;
 
-    public RecyclerViewAdapterPresenter(ArrayList<Furniture> furniture, Context activityContext) {
+    public RecyclerViewAdapterFurnitureFurniturePresenter(ArrayList<Furniture> furniture, Context activityContext) {
         this.furniture = furniture;
         this.furnitureFiltered = furniture;
         activityContext = activityContext;

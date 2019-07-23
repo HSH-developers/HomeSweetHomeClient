@@ -3,7 +3,8 @@ package com.example.hsh.homesweethome.furniture.presenter;
 import android.content.Context;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
-import com.example.hsh.homesweethome.furniture.RecyclerViewHolderCategoryFurniture;
+import com.example.hsh.homesweethome.furniture.view.interfaces.RecyclerViewHolderCategoryFurniture;
+import com.example.hsh.homesweethome.furniture.presenter.interfaces.IRecyclerViewAdapterMainPresenter;
 
 import java.util.ArrayList;
 
@@ -12,9 +13,9 @@ public class RecyclerViewAdapterMainPresenter implements IRecyclerViewAdapterMai
     private ArrayList<CategoryFurniture> categoriesFurnitureFiltered;
     private Context activityContext;
 
-    public RecyclerViewAdapterMainPresenter(ArrayList<CategoryFurniture> categoriesFurniture, ArrayList<CategoryFurniture> categoriesFurnitureFiltered, Context activityContext) {
+    public RecyclerViewAdapterMainPresenter(ArrayList<CategoryFurniture> categoriesFurniture, Context activityContext) {
         this.categoriesFurniture = categoriesFurniture;
-        this.categoriesFurnitureFiltered = categoriesFurnitureFiltered;
+        this.categoriesFurnitureFiltered = categoriesFurniture;
         this.activityContext = activityContext;
     }
 

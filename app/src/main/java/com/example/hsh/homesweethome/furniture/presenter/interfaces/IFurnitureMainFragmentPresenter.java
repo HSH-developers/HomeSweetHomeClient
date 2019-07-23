@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.furniture.presenter;
+package com.example.hsh.homesweethome.furniture.presenter.interfaces;
 
 public interface IFurnitureMainFragmentPresenter {
 

@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.furniture.view;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -17,8 +17,12 @@ import android.widget.TextView;
 
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterFurniture;
+import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterLocations;
 import com.example.hsh.homesweethome.furniture.presenter.FurnitureCategoryFragmentPresenter;
-import com.example.hsh.homesweethome.furniture.view.IFurnitureCategoryFragmentView;
+import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterLocationsPresenter;
+import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterFurnitureFurniturePresenter;
+import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureCategoryFragmentView;
 
 import java.util.ArrayList;
 
@@ -68,8 +72,8 @@ public class FurnitureCategoryFragment extends FurnitureBaseFragment implements 
 
         locationsHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         categoryFurnitureRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerViewAdapterLocations = new RecyclerViewAdapterLocations(getContext(), locations);
-        recyclerViewAdapterFurniture = new RecyclerViewAdapterFurniture(getContext(), furniture);
+        recyclerViewAdapterLocations = new RecyclerViewAdapterLocations(new RecyclerViewAdapterLocationsPresenter(locations, getContext()));
+        recyclerViewAdapterFurniture = new RecyclerViewAdapterFurniture(new RecyclerViewAdapterFurnitureFurniturePresenter(furniture, getContext()));
         locationsHorizontalRecyclerView.setAdapter(recyclerViewAdapterLocations);
         categoryFurnitureRecyclerView.setAdapter(recyclerViewAdapterFurniture);
         categoryFurnitureRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
@@ -104,10 +108,7 @@ public class FurnitureCategoryFragment extends FurnitureBaseFragment implements 
                     filteredPrice = seekBar.getProgress()/100 * 1000;
                 }
             });
-            apply_button.setOnClickListener(v -> {
-                recyclerViewAdapterFurniture.getFilter().filter(filteredPrice.toString());
-                filterDialog.dismiss();
-            });
+            apply_button.setOnClickListener(v -> filterDialog.dismiss());
             filterDialog.show();
 
         }

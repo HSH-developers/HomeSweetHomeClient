@@ -13,7 +13,8 @@ import android.view.MenuItem;
 
 import com.example.hsh.homesweethome.R;
 import com.example.hsh.homesweethome.furniture.presenter.FurniturePresenter;
-import com.example.hsh.homesweethome.furniture.view.IFurnitureView;
+import com.example.hsh.homesweethome.furniture.view.FurnitureBaseFragment;
+import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureView;
 
 public class Furniture extends AppCompatActivity
         implements IFurnitureView, NavigationView.OnNavigationItemSelectedListener {
