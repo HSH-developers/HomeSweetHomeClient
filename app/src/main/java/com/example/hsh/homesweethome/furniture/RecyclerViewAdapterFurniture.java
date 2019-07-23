@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.furniture;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,9 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.hsh.homesweethome.Model.Furniture;
+import com.example.hsh.homesweethome.details.FurnitureDetails;
+import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

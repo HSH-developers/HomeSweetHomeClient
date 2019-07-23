@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.furniture;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
+import com.example.hsh.homesweethome.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

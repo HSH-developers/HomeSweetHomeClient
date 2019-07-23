@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.furniture;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,7 +6,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
-import com.example.hsh.homesweethome.Model.Furniture;
+import com.example.hsh.homesweethome.details.FurnitureDetailsCartFragment;
+import com.example.hsh.homesweethome.details.FurnitureDetailsMainFragment;
+import com.example.hsh.homesweethome.details.FurnitureDetailsReviewFragment;
+import com.example.hsh.homesweethome.Models.Furniture;
 
 public class FurnitureFragmentAdapter extends FragmentStatePagerAdapter {
     int PAGES_COUNT = 3;

@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.furniture;
 
 
 import android.os.Bundle;
@@ -12,10 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
-import com.example.hsh.homesweethome.Model.CategoryFurniture;
-import com.example.hsh.homesweethome.Model.Furniture;
-import com.example.hsh.homesweethome.Network.APIService;
-import com.example.hsh.homesweethome.Network.Utils;
+import com.example.hsh.homesweethome.Models.CategoryFurniture;
+import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.network.APIService;
+import com.example.hsh.homesweethome.network.Utils;
 import com.jakewharton.rxbinding2.widget.TextViewTextChangeEvent;
 
 import java.util.ArrayList;

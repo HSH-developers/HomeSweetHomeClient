@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.details;
 
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
@@ -20,7 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.hsh.homesweethome.Model.Furniture;
+import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

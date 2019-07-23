@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.ar;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -16,7 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.hsh.homesweethome.Model.Furniture;
+import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.R;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;

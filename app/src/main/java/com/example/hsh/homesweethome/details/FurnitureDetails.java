@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.details;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.hsh.homesweethome.Model.Furniture;
+import com.example.hsh.homesweethome.ar.FurnitureARActivity;
+import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.furniture.FurnitureFragmentAdapter;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;

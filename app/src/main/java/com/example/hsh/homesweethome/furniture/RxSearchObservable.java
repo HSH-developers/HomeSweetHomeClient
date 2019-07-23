@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.furniture;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 

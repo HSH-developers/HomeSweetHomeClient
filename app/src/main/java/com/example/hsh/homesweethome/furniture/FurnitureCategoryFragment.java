@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.furniture;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -16,7 +16,8 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.hsh.homesweethome.Model.CategoryFurniture;
+import com.example.hsh.homesweethome.Models.CategoryFurniture;
+import com.example.hsh.homesweethome.R;
 
 import java.util.ArrayList;
 
