@@ -24,15 +24,15 @@ only being visible in the Google Play Store on devices that support ARCore. -->
 
         <meta-data android:name="com.google.ar.core" android:value="required" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".furniture.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FurnitureARActivity"></activity>
-        <activity android:name=".FurnitureDetails"></activity>
+        <activity android:name=".ar.FurnitureARActivity"></activity>
+        <activity android:name=".details.FurnitureDetails"></activity>
 
     </application>
 
