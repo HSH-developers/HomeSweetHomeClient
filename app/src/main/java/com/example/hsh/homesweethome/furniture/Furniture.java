@@ -15,34 +15,38 @@ import android.view.MenuItem;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.example.hsh.homesweethome.R;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Furniture extends AppCompatActivity
+        implements IFurnitureView, NavigationView.OnNavigationItemSelectedListener {
 
-    private String TAG  = "MainActivity";
+    private String TAG  = "Furniture";
 
-    private FloatingSearchView mSearchView;
+    private FurniturePresenter presenter;
+    private Toolbar toolbar;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        presenter = new FurniturePresenter(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setElevation(4);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+        presenter.loadInitialFragment();
+
+        toolbar = findViewById(R.id.toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+
+        toolbar.setElevation(4);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        FurnitureMainFragment furnitureMainFragment = new FurnitureMainFragment();
-
-        ft.replace(R.id.fragment_container, furnitureMainFragment).addToBackStack(null).commit();
     }
 
     @Override
@@ -82,5 +86,15 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void setFragment(FurnitureBaseFragment fragment) {
+        fragment.attachPresenter(presenter);
 
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+
+    }
 }

@@ -17,26 +17,26 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
+import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
 
 import java.util.ArrayList;
 
-public class FurnitureCategoryFragment extends Fragment {
+public class FurnitureCategoryFragment extends FurnitureBaseFragment implements IFurnitureCategoryFragmentView {
 
     private TextView furnitureCategory;
     private RecyclerView locationsHorizontalRecyclerView;
     private RecyclerView categoryFurnitureRecyclerView;
     private RecyclerViewAdapterFurniture recyclerViewAdapterFurniture;
     private RecyclerViewAdapterLocations recyclerViewAdapterLocations;
-    private ArrayList<String> locations;
     private ImageView furnitureFilter;
     private CardView apply_button;
     private SeekBar price_slider_bar;
+    private FurnitureCategoryFragmentPresenter presenter;
 
     public FurnitureCategoryFragment() {
     }
 
-    private CategoryFurniture categoryFurniture;
     private Integer filteredPrice;
 
 
@@ -50,62 +50,66 @@ public class FurnitureCategoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Bundle fragmentArgs = getArguments();
-        categoryFurniture = (CategoryFurniture) fragmentArgs.getSerializable("category_furnitures");
-        locations = fragmentArgs.getStringArrayList("locations");
+        presenter = new FurnitureCategoryFragmentPresenter(this);
 
         furnitureFilter = view.findViewById(R.id.filter_furniture);
         furnitureCategory = view.findViewById(R.id.furnitureCategory);
         locationsHorizontalRecyclerView = view.findViewById(R.id.locations_horizontal_recycler);
         categoryFurnitureRecyclerView = view.findViewById(R.id.category_furnitures_recycler_view);
 
+        presenter.getCategoryFurniture(fragmentArgs);
+
+        furnitureFilter.setOnClickListener(v -> presenter.setFurnitureFilter());
+
+    }
+
+    @Override
+    public void displayCategoryFurniture(ArrayList<Furniture> furniture, ArrayList<String> locations) {
+
         locationsHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         categoryFurnitureRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-
         recyclerViewAdapterLocations = new RecyclerViewAdapterLocations(getContext(), locations);
-        recyclerViewAdapterFurniture = new RecyclerViewAdapterFurniture(getContext(), categoryFurniture.getFurnitures());
-
+        recyclerViewAdapterFurniture = new RecyclerViewAdapterFurniture(getContext(), furniture);
         locationsHorizontalRecyclerView.setAdapter(recyclerViewAdapterLocations);
         categoryFurnitureRecyclerView.setAdapter(recyclerViewAdapterFurniture);
         categoryFurnitureRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
-        furnitureCategory.setText(categoryFurniture.getFurnitureCategory());
-
-
-        furnitureFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog filterDialog = new Dialog(getContext());
-                filterDialog.setContentView(R.layout.filter_dialog);
-
-                apply_button = filterDialog.findViewById(R.id.apply_button);
-                price_slider_bar = filterDialog.findViewById(R.id.price_slider_bar);
-                price_slider_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                    @Override
-                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        filteredPrice = seekBar.getProgress()/100 * 1000;
-                    }
-
-                    @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {
-                        filteredPrice = seekBar.getProgress()/100 * 1000;
-                    }
-
-                    @Override
-                    public void onStopTrackingTouch(SeekBar seekBar) {
-                        filteredPrice = seekBar.getProgress()/100 * 1000;
-                    }
-                });
-                apply_button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        recyclerViewAdapterFurniture.getFilter().filter(filteredPrice.toString());
-                        filterDialog.dismiss();
-                    }
-                });
-                filterDialog.show();
-
-            }
-        });
-
     }
+
+    @Override
+    public void displayFurnitureCategory(String category) {
+        furnitureCategory.setText(category);
+    }
+
+    @Override
+    public void setFilterView() {
+            Dialog filterDialog = new Dialog(getContext());
+            filterDialog.setContentView(R.layout.filter_dialog);
+
+            apply_button = filterDialog.findViewById(R.id.apply_button);
+            price_slider_bar = filterDialog.findViewById(R.id.price_slider_bar);
+            price_slider_bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    filteredPrice = seekBar.getProgress()/100 * 1000;
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    filteredPrice = seekBar.getProgress()/100 * 1000;
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    filteredPrice = seekBar.getProgress()/100 * 1000;
+                }
+            });
+            apply_button.setOnClickListener(v -> {
+                recyclerViewAdapterFurniture.getFilter().filter(filteredPrice.toString());
+                filterDialog.dismiss();
+            });
+            filterDialog.show();
+
+        }
+
 }

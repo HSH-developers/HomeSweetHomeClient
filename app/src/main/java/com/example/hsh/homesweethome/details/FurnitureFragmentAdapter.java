@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.details;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

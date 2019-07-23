@@ -10,7 +10,6 @@ import android.util.Log;
 import com.example.hsh.homesweethome.ar.FurnitureARActivity;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
-import com.example.hsh.homesweethome.furniture.FurnitureFragmentAdapter;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
