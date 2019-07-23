@@ -78,6 +78,7 @@ public class RecyclerViewAdapterMain
 
         }
 
+
         @Override
         public void setFurnitureCategory(String category) {
             furniture_category.setText(category);
