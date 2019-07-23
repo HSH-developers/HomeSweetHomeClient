@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.furniture.view;
 
 import com.example.hsh.homesweethome.Models.Furniture;
 

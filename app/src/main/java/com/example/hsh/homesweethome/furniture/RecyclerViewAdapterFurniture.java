@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
 import com.example.hsh.homesweethome.details.FurnitureDetails;
+import com.example.hsh.homesweethome.furniture.presenter.IRecyclerViewAdapterPresenter;
 import com.squareup.picasso.Picasso;
 
 public class RecyclerViewAdapterFurniture extends RecyclerView.Adapter<RecyclerViewAdapterFurniture.FurnitureViewHolder>{

@@ -10,17 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.furniture.presenter.IRecyclerViewAdapterMainPresenter;
+import com.example.hsh.homesweethome.furniture.presenter.IRecyclerViewAdapterPresenter;
+import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterPresenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

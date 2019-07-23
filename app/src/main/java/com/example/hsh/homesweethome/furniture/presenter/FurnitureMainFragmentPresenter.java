@@ -1,9 +1,8 @@
-package com.example.hsh.homesweethome.furniture;
-
-import android.util.Log;
+package com.example.hsh.homesweethome.furniture.presenter;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.furniture.view.IFurnitureMainFragmentView;
 import com.example.hsh.homesweethome.network.APIService;
 import com.example.hsh.homesweethome.network.Utils;
 

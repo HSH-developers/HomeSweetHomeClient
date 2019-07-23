@@ -1,8 +1,9 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.furniture.presenter;
 
 import android.os.Bundle;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
+import com.example.hsh.homesweethome.furniture.view.IFurnitureCategoryFragmentView;
 
 import java.util.ArrayList;
 

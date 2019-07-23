@@ -1,4 +1,8 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.furniture.presenter;
+
+import com.example.hsh.homesweethome.furniture.FurnitureBaseFragment;
+import com.example.hsh.homesweethome.furniture.FurnitureMainFragment;
+import com.example.hsh.homesweethome.furniture.view.IFurnitureView;
 
 public class FurniturePresenter implements IFurniturePresenter, IFragmentNavigationPresenter {
 

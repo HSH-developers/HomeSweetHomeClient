@@ -1,8 +1,9 @@
-package com.example.hsh.homesweethome.furniture;
+package com.example.hsh.homesweethome.furniture.presenter;
 
 import android.content.Context;
 
 import com.example.hsh.homesweethome.Models.Furniture;
+import com.example.hsh.homesweethome.furniture.RecyclerViewHolderFurniture;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class RecyclerViewAdapterPresenter implements IRecyclerViewAdapterPresent
         viewHolder.setFurnitureBrand(furniture.get(position).getFurnitureBrand());
         viewHolder.setFurnitureTitle(furniture.get(position).getFurnitureName());
         viewHolder.setFurniturePrice(furniture.get(position).getFurniturePrice().toString());
-        viewHolder.setOnClickListenerFurnitureCard(activityContext);
+        viewHolder.setOnClickListenerFurnitureCard(activityContext, furniture.get(position));
         viewHolder.setFurnitureImage(furniture.get(position).getFurnitureImageUrl());
         viewHolder.setFurnitureBrandImage(furniture.get(position).getFurnitureBrandImageUrl());
     }
