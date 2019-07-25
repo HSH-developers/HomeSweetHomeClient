@@ -51,6 +51,7 @@ public class FurnitureCategoryCategoryListModel implements IFurnitureCategoryLis
             @Override
             public void onFailure(Call<List<Furniture>> call, Throwable t) {
 
+                
             }
         });
 
