@@ -24,35 +24,47 @@
             android:background="#ffff"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_marginVertical="5dp"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/furnitureBrandLogoCard"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/ar_icon" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:src="@drawable/ar_icon"
+                />
+
+
             <LinearLayout
+                android:layout_weight="3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/furnitureTitleCard"
                     android:textColor="#2d2d2d"
-                    android:textSize="13sp"
+                    android:textSize="9sp"
+                    android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Furniture Name" />
                 <TextView
                     android:id="@+id/furnitureBrandCard"
                     android:textColor="#2d2d2d"
-                    android:textSize="13sp"
+                    android:layout_gravity="end"
+                    android:textSize="9sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Furniture Brand" />
                 <TextView
                     android:id="@+id/furniturePriceCard"
+                    android:layout_gravity="end"
                     android:textColor="#2d2d2d"
-                    android:textSize="13sp"
+                    android:textSize="9sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Furniture Price" />

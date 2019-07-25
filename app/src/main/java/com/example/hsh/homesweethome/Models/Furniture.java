@@ -35,12 +35,6 @@ public class Furniture implements Serializable{
     @Expose
     private String furnitureBrandImageUrl;
 
-    @SerializedName("furnitureBrandLogoUrl")
-    @Expose
-    private String furnitureBrandLogoUrl;
-    
-    public String getFurnitureBrandLogoUrl() { return furnitureBrandLogoUrl; }
-
     public String getFurnitureName() {
         return furnitureName;
     }
@@ -104,7 +98,6 @@ public class Furniture implements Serializable{
     public void setFurnitureModelUrl(String furnitureModelUrl) {
         this.furnitureModelUrl = furnitureModelUrl;
     }
-
 
     public String getFurnitureBrandImageUrl() {
         return furnitureBrandImageUrl;

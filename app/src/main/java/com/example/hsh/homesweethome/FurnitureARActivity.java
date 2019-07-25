@@ -118,7 +118,7 @@ public class FurnitureARActivity extends AppCompatActivity {
                         this,
                         Uri.parse(GLB_ASSET),
                         RenderableSource.SourceType.GLB)
-                        .setScale(0.01f)  // Scale the original model to 50%.
+                        .setScale(50f)  // Scale the original model to 50%.
                         .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                         .build())
                 .setRegistryId(GLB_ASSET)
