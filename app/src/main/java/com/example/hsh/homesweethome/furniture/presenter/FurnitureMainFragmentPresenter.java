@@ -1,7 +1,7 @@
 package com.example.hsh.homesweethome.furniture.presenter;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
-import com.example.hsh.homesweethome.furniture.model.FurnitureCategoryCategoryListModel;
+import com.example.hsh.homesweethome.furniture.model.FurnitureCategoryListModel;
 import com.example.hsh.homesweethome.furniture.model.Interfaces.IFurnitureCategoryListModel;
 import com.example.hsh.homesweethome.furniture.presenter.interfaces.IFurnitureMainFragmentPresenter;
 import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureMainFragmentView;
@@ -16,7 +16,7 @@ public class FurnitureMainFragmentPresenter implements IFurnitureMainFragmentPre
 
     public FurnitureMainFragmentPresenter(IFurnitureMainFragmentView view) {
         this.view = view;
-        this.furnitureCategoryListModel = new FurnitureCategoryCategoryListModel();
+        this.furnitureCategoryListModel = FurnitureCategoryListModel.getInstance();
     }
 
     @Override

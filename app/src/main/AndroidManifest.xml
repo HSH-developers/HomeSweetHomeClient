@@ -13,7 +13,7 @@
 only being visible in the Google Play Store on devices that support ARCore. -->
     <uses-feature android:name="android.hardware.camera.ar" android:required="true"/>
     <application
-        android:name=".MyApplication"
+        android:name=".Main"
         android:allowBackup="true"
         android:icon="@mipmap/home_sweet_home_round"
         android:label="@string/app_name"

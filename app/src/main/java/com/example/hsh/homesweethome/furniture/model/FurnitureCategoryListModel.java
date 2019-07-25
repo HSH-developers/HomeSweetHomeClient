@@ -14,16 +14,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FurnitureCategoryCategoryListModel implements IFurnitureCategoryListModel {
+public class FurnitureCategoryListModel implements IFurnitureCategoryListModel {
+
+    private static final FurnitureCategoryListModel instance = new FurnitureCategoryListModel();
+
+    public static FurnitureCategoryListModel getInstance() {
+        if ( instance == null ) {
+            return new FurnitureCategoryListModel();
+        }
+        return instance;
+    }
 
     private APIService mAPIService;
-    private ArrayList<CategoryFurniture> categories = new ArrayList<>();
+    private ArrayList<CategoryFurniture> categories;
 
+
+    private FurnitureCategoryListModel() {
+        this.mAPIService = Utils.getAPIService();
+        this.categories = new ArrayList<>();
+    }
 
     @Override
     public void getFurnitureList(OnFinishedListener onFinishedListener) {
 
-        mAPIService = Utils.getAPIService();
         Call<List<Furniture>> call = mAPIService.getFurnitures();
         call.enqueue(new Callback<List<Furniture>>() {
             @Override
