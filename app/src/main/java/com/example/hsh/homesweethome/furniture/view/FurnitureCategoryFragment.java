@@ -21,7 +21,7 @@ import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterFurnit
 import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterLocations;
 import com.example.hsh.homesweethome.furniture.presenter.FurnitureCategoryFragmentPresenter;
 import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterLocationsPresenter;
-import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterFurnitureFurniturePresenter;
+import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterFurniturePresenter;
 import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureCategoryFragmentView;
 
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class FurnitureCategoryFragment extends FurnitureBaseFragment implements 
         locationsHorizontalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         categoryFurnitureRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewAdapterLocations = new RecyclerViewAdapterLocations(new RecyclerViewAdapterLocationsPresenter(locations, getContext()));
-        recyclerViewAdapterFurniture = new RecyclerViewAdapterFurniture(new RecyclerViewAdapterFurnitureFurniturePresenter(furniture, getContext()));
+        recyclerViewAdapterFurniture = new RecyclerViewAdapterFurniture(new RecyclerViewAdapterFurniturePresenter(furniture, getContext()));
         locationsHorizontalRecyclerView.setAdapter(recyclerViewAdapterLocations);
         categoryFurnitureRecyclerView.setAdapter(recyclerViewAdapterFurniture);
         categoryFurnitureRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));

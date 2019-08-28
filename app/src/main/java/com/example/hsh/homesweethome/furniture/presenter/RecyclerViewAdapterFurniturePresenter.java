@@ -8,16 +8,16 @@ import com.example.hsh.homesweethome.furniture.presenter.interfaces.IRecyclerVie
 
 import java.util.ArrayList;
 
-public class RecyclerViewAdapterFurnitureFurniturePresenter implements IRecyclerViewAdapterFurniturePresenter {
+public class RecyclerViewAdapterFurniturePresenter implements IRecyclerViewAdapterFurniturePresenter {
 
     private ArrayList<com.example.hsh.homesweethome.Models.Furniture> furniture;
     private ArrayList<Furniture> furnitureFiltered;
     private Context activityContext;
 
-    public RecyclerViewAdapterFurnitureFurniturePresenter(ArrayList<Furniture> furniture, Context activityContext) {
+    public RecyclerViewAdapterFurniturePresenter(ArrayList<Furniture> furniture, Context activityContext) {
         this.furniture = furniture;
         this.furnitureFiltered = furniture;
-        activityContext = activityContext;
+        this.activityContext = activityContext;
     }
 
     @Override
@@ -33,5 +33,10 @@ public class RecyclerViewAdapterFurnitureFurniturePresenter implements IRecycler
     @Override
     public int getFurnitureCount() {
         return furniture.size();
+    }
+
+    @Override
+    public Context getActivityContext() {
+        return this.activityContext;
     }
 }

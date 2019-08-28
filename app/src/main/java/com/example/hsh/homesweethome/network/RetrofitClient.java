@@ -22,8 +22,8 @@ public class RetrofitClient {
             OkHttpClient client ;
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-            builder.addInterceptor(new AddCookiesInterceptor(Main.getAppContext())); // VERY VERY IMPORTANT
-            builder.addInterceptor(new ReceivedCookiesInterceptor(Main.getAppContext())); // VERY VERY IMPORTANT
+//            builder.addInterceptor(new AddCookiesInterceptor(Main.getAppContext())); // VERY VERY IMPORTANT
+//            builder.addInterceptor(new ReceivedCookiesInterceptor(Main.getAppContext())); // VERY VERY IMPORTANT
             client = builder.build();
             client.retryOnConnectionFailure();
 

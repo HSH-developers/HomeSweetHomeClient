@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class FurnitureViewHolder extends RecyclerView.ViewHolder implements Recy
     TextView furniture_title, furniture_brand, furniture_price;
     ImageView furniture_image, furniture_brand_logo;
     CardView furniture_card;
+
+    private String tag = "FurnitureViewHolder";
 
     public FurnitureViewHolder(View itemView) {
         super(itemView);
@@ -48,7 +51,9 @@ public class FurnitureViewHolder extends RecyclerView.ViewHolder implements Recy
     @Override
     public void setOnClickListenerFurnitureCard(Context activityContext, Furniture furniture) {
         furniture_card.setOnClickListener(v -> {
+            Log.e(tag, "Clicking on furniture");
 
+            Log.e(tag, activityContext.toString());
             Intent intent = new Intent(activityContext, FurnitureDetails.class);
             intent.putExtra("Furniture", furniture);
             activityContext.startActivity(intent);

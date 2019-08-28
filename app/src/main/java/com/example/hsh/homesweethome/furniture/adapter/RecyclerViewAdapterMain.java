@@ -22,7 +22,7 @@ public class RecyclerViewAdapterMain
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.furniture_type_and_cards, parent,false));
+        return new MyViewHolder(LayoutInflater.from(presenter.getActivityContext()).inflate(R.layout.furniture_type_and_cards, parent,false));
     }
 
     @Override

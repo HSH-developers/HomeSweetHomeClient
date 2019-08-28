@@ -15,7 +15,7 @@ import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
 import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterFurniture;
-import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterFurnitureFurniturePresenter;
+import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterFurniturePresenter;
 import com.example.hsh.homesweethome.furniture.presenter.interfaces.IRecyclerViewAdapterFurniturePresenter;
 import com.example.hsh.homesweethome.furniture.view.interfaces.RecyclerViewHolderCategoryFurniture;
 
@@ -38,7 +38,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements RecyclerVie
 
     @Override
     public void setHorizontalRecyclerView(ArrayList<Furniture> furniture, Context activityContext) {
-        IRecyclerViewAdapterFurniturePresenter presenter = new RecyclerViewAdapterFurnitureFurniturePresenter(furniture, activityContext);
+        IRecyclerViewAdapterFurniturePresenter presenter = new RecyclerViewAdapterFurniturePresenter(furniture, activityContext);
         RecyclerViewAdapterFurniture horizontalCards = new RecyclerViewAdapterFurniture(presenter);
         horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(activityContext, LinearLayoutManager.HORIZONTAL, false));
         horizontalRecyclerView.setAdapter(horizontalCards);

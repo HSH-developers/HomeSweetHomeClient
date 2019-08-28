@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ public class FurnitureMainFragment extends FurnitureBaseFragment implements IFur
     private RecyclerView verticalRecyclerView;
 
     private SearchView searchView;
+
+    private String tag = "FurnitureMainFragment";
 
     public FurnitureMainFragment() {
     }
@@ -67,12 +70,12 @@ public class FurnitureMainFragment extends FurnitureBaseFragment implements IFur
 
     @Override
     public void displayFurnitureRecyclerView(ArrayList<CategoryFurniture> categories) {
-        verticalAdapter = new RecyclerViewAdapterMain(new RecyclerViewAdapterMainPresenter(categories, getContext()));
+        Log.e(tag, "displaying view");
+        verticalAdapter = new RecyclerViewAdapterMain(new RecyclerViewAdapterMainPresenter(categories, getActivity()));
         verticalAdapter.setHasStableIds(true);
 
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         verticalRecyclerView.setAdapter(verticalAdapter);
-        verticalAdapter.clearData();
 
         verticalAdapter.notifyDataSetChanged();
     }

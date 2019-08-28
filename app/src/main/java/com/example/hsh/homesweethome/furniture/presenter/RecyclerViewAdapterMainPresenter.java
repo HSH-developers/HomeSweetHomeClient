@@ -36,5 +36,10 @@ public class RecyclerViewAdapterMainPresenter implements IRecyclerViewAdapterMai
         categoriesFurnitureFiltered.clear();
     }
 
+    @Override
+    public Context getActivityContext() {
+        return this.activityContext;
+    }
+
 
 }

@@ -10,7 +10,7 @@ public class Main extends Application {
 
     public void onCreate() {
         super.onCreate();
-        context = getApplicationContext();
+        Main.context = getApplicationContext();
         instance = this;
     }
 
