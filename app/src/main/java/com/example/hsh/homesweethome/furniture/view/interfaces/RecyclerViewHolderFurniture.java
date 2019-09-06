@@ -11,4 +11,5 @@ public interface RecyclerViewHolderFurniture {
     void setOnClickListenerFurnitureCard(Context activityContext, Furniture furniture);
     void setFurnitureImage(String furnitureImageUrl);
     void setFurnitureBrandImage(String furnitureBrandImageUrl);
+    void setFurnitureInStore(Boolean inStore);
 }
