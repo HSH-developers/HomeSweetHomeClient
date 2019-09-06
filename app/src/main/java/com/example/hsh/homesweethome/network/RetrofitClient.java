@@ -1,6 +1,6 @@
 package com.example.hsh.homesweethome.network;
 
-import com.example.hsh.homesweethome.MyApplication;
+import com.example.hsh.homesweethome.Main;
 import com.example.hsh.homesweethome.network.Interceptors.AddCookiesInterceptor;
 import com.example.hsh.homesweethome.network.Interceptors.ReceivedCookiesInterceptor;
 import com.google.gson.Gson;
@@ -22,8 +22,8 @@ public class RetrofitClient {
             OkHttpClient client ;
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
-//            builder.addInterceptor(new AddCookiesInterceptor(MyApplication.getAppContext())); // VERY VERY IMPORTANT
-//            builder.addInterceptor(new ReceivedCookiesInterceptor(MyApplication.getAppContext())); // VERY VERY IMPORTANT
+//            builder.addInterceptor(new AddCookiesInterceptor(Main.getAppContext())); // VERY VERY IMPORTANT
+//            builder.addInterceptor(new ReceivedCookiesInterceptor(Main.getAppContext())); // VERY VERY IMPORTANT
             client = builder.build();
             client.retryOnConnectionFailure();
 

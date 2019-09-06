@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome;
+package com.example.hsh.homesweethome.details;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,15 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FurnitureDetailsReviewFragment extends Fragment {
+import com.example.hsh.homesweethome.R;
 
-    public FurnitureDetailsReviewFragment() {
+public class FurnitureDetailsCartFragment extends Fragment {
+    public FurnitureDetailsCartFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.furniture_details_review, container, false);
+        return inflater.inflate(R.layout.furniture_details_cart, container, false);
     }
 
     @Override
