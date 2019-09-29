@@ -34,6 +34,9 @@ public class Furniture implements Serializable{
     @SerializedName("furnitureBrandImageUrl")
     @Expose
     private String furnitureBrandImageUrl;
+    @SerializedName("inStore")
+    @Expose
+    private Boolean in_store;
 
     public String getFurnitureName() {
         return furnitureName;
@@ -105,6 +108,14 @@ public class Furniture implements Serializable{
 
     public void setFurnitureBrandImageUrl(String furnitureBrandImageUrl) {
         this.furnitureBrandImageUrl = furnitureBrandImageUrl;
+    }
+
+    public Boolean getInStore() {
+        return in_store;
+    }
+
+    public void setInStore(Boolean in_store) {
+        this.in_store = in_store;
     }
 }
 

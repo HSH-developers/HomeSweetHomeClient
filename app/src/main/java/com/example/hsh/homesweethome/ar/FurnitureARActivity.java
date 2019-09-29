@@ -42,6 +42,8 @@ public class FurnitureARActivity extends AppCompatActivity {
     private Button animateButton;
     private ModelAnimator modelAnimator;
 
+    private String tag = "FurnitureARActivity";
+
 
 
     @Override
@@ -56,6 +58,7 @@ public class FurnitureARActivity extends AppCompatActivity {
         if(intent.getExtras() != null) {
             furniture = (Furniture) intent.getSerializableExtra("Furniture");
         }
+        Log.e(tag, furniture.getFurnitureModelUrl());
 
         GLB_ASSET = furniture.getFurnitureModelUrl();
         setContentView(R.layout.ar_fragment);

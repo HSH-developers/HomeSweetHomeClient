@@ -68,6 +68,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Furniture Price" />
+                <TextView
+                    android:id="@+id/furnitureInStore"
+                    android:layout_gravity="end"
+                    android:textColor="#2d2d2d"
+                    android:textSize="9sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Furniture In Store" />
+
             </LinearLayout>
         </LinearLayout>
 

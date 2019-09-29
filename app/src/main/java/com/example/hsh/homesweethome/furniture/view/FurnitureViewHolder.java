@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 public class FurnitureViewHolder extends RecyclerView.ViewHolder implements RecyclerViewHolderFurniture {
 
-    TextView furniture_title, furniture_brand, furniture_price;
+    TextView furniture_title, furniture_brand, furniture_price, furniture_in_store;
     ImageView furniture_image, furniture_brand_logo;
     CardView furniture_card;
 
@@ -28,6 +28,7 @@ public class FurnitureViewHolder extends RecyclerView.ViewHolder implements Recy
         furniture_title = itemView.findViewById(R.id.furnitureTitleCard);
         furniture_brand = itemView.findViewById(R.id.furnitureBrandCard);
         furniture_price = itemView.findViewById(R.id.furniturePriceCard);
+        furniture_in_store = itemView.findViewById(R.id.furnitureInStore);
         furniture_brand_logo = itemView.findViewById(R.id.furnitureBrandLogoCard);
         furniture_image = itemView.findViewById(R.id.furnitureImgCard);
         furniture_card = itemView.findViewById(R.id.furnitureCard);
@@ -46,6 +47,16 @@ public class FurnitureViewHolder extends RecyclerView.ViewHolder implements Recy
     @Override
     public void setFurniturePrice(String price) {
         furniture_price.setText(price);
+    }
+
+    @Override
+    public void setFurnitureInStore(Boolean inStore) {
+        if(inStore) {
+            furniture_in_store.setText("Available in store");
+        } else {
+            furniture_in_store.setText("Unavailable in store");
+        }
+
     }
 
     @Override
@@ -78,4 +89,5 @@ public class FurnitureViewHolder extends RecyclerView.ViewHolder implements Recy
                 .into(furniture_brand_logo);
 
     }
+
 }
