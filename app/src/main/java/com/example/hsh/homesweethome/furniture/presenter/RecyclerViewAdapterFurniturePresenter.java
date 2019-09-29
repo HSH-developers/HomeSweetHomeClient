@@ -28,7 +28,7 @@ public class RecyclerViewAdapterFurniturePresenter implements IRecyclerViewAdapt
         viewHolder.setOnClickListenerFurnitureCard(activityContext, furniture.get(position));
         viewHolder.setFurnitureImage(furniture.get(position).getFurnitureImageUrl());
         viewHolder.setFurnitureBrandImage(furniture.get(position).getFurnitureBrandImageUrl());
-        viewHolder.setFurnitureInStore(furniture.get(position).getIn_store());
+        viewHolder.setFurnitureInStore(furniture.get(position).getInStore());
     }
 
     @Override
