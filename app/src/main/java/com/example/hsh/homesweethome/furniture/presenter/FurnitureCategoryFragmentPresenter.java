@@ -22,7 +22,7 @@ public class FurnitureCategoryFragmentPresenter implements IFurnitureCategoryFra
 
     @Override
     public void getCategoryFurniture(Bundle fragmentArgs) {
-        categoryFurniture = (CategoryFurniture) fragmentArgs.getSerializable("category_furnitures");
+        categoryFurniture = (CategoryFurniture) fragmentArgs.getSerializable("category_furniture");
         locations = fragmentArgs.getStringArrayList("locations");
 
 

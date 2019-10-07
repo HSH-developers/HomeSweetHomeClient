@@ -11,9 +11,7 @@ import retrofit2.http.Path;
 
 public interface APIService {
 
-    @GET("/api/furnitures/retrieveAllFurnitures")
+    @GET("/internal/v1/furniture/list")
     Call<List<Furniture>> getFurnitures();
 
-    @GET("/api/furnitures/retrieveQueryFurnitures/{limit}/{query}")
-    Single<List<Furniture>> getQueryFurnitures(@Path(value = "limit", encoded = true) Integer limit, @Path(value = "query", encoded = true) String query);
 }

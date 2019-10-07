@@ -34,8 +34,8 @@ public class FurnitureDetails extends AppCompatActivity{
             furniture = (Furniture) intent.getSerializableExtra("Furniture");
         }
 
-        Log.e(TAG, furniture.getFurnitureImageUrl() );
-        Log.e(TAG, furniture.getFurnitureModelUrl());
+        Log.e(TAG, furniture.getImageUrl());
+        Log.e(TAG, furniture.getModelUrl());
 
 
         setContentView(R.layout.furniture_details);

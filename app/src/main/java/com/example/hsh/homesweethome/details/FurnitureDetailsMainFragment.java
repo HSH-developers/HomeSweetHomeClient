@@ -69,7 +69,7 @@ public class FurnitureDetailsMainFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Uri uri = Uri.parse(furniture.getFurnitureImageUrl());
+        Uri uri = Uri.parse(furniture.getImageUrl());
 
         furnitureImage = view.findViewById(R.id.furnitureMainImg);
         furnitureNameTextView = view.findViewById(R.id.furnitureMainName);
@@ -105,11 +105,11 @@ public class FurnitureDetailsMainFragment extends Fragment {
             }
         });
 
-        String priceTag = "$"+ String.valueOf(furniture.getFurniturePrice());
+        String priceTag = "$"+ String.valueOf(furniture.getPrice());
         furniturePriceTextView.setText(priceTag);
-        furnitureMaterialUsed.setText(furniture.getFurnitureType());
-        furnitureDimension.setText(furniture.getFurnitureDimension());
-        furnitureCategory.setText(furniture.getFurnitureCategory());
+        furnitureMaterialUsed.setText(furniture.getType());
+        furnitureDimension.setText(furniture.getDimension());
+        furnitureCategory.setText(furniture.getCategory());
 
         furnitureDetailsHorizontalScrollView = view.findViewById(R.id.furnitureDetailsHorizontalScrollView);
         gestureDetector = new GestureDetector(new MyGestureDetector());
@@ -166,7 +166,7 @@ public class FurnitureDetailsMainFragment extends Fragment {
             }
         });
 
-        furnitureNameTextView.setText(furniture.getFurnitureName());
+        furnitureNameTextView.setText(furniture.getName());
         ViewTreeObserver vto = furnitureImage.getViewTreeObserver();
         vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override

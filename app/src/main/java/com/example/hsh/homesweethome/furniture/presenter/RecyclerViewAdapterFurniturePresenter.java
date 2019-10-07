@@ -22,13 +22,12 @@ public class RecyclerViewAdapterFurniturePresenter implements IRecyclerViewAdapt
 
     @Override
     public void onBindFurnitureViewAtPosition(int position, RecyclerViewHolderFurniture viewHolder) {
-        viewHolder.setFurnitureBrand(furniture.get(position).getFurnitureBrand());
-        viewHolder.setFurnitureTitle(furniture.get(position).getFurnitureName());
-        viewHolder.setFurniturePrice(furniture.get(position).getFurniturePrice().toString());
+        viewHolder.setFurnitureBrand(furniture.get(position).getBrand());
+        viewHolder.setFurnitureTitle(furniture.get(position).getName());
+        viewHolder.setFurniturePrice(furniture.get(position).getPrice().toString());
         viewHolder.setOnClickListenerFurnitureCard(activityContext, furniture.get(position));
-        viewHolder.setFurnitureImage(furniture.get(position).getFurnitureImageUrl());
-        viewHolder.setFurnitureBrandImage(furniture.get(position).getFurnitureBrandImageUrl());
-        viewHolder.setFurnitureInStore(furniture.get(position).getInStore());
+        viewHolder.setFurnitureImage(furniture.get(position).getImageUrl());
+        viewHolder.setFurnitureBrandImage(furniture.get(position).getBrandImageUrl());
     }
 
     @Override

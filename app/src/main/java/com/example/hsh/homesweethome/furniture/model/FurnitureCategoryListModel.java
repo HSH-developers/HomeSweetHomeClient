@@ -49,12 +49,12 @@ public class FurnitureCategoryListModel implements IFurnitureCategoryListModel {
                     Log.e(tag, response.body().toString());
                     HashMap<String, ArrayList<Furniture>> splitFurniture = new HashMap<>();
                     for(Furniture furniture : response.body()) {
-                        if (splitFurniture.get(furniture.getFurnitureCategory()) != null) {
-                            splitFurniture.get(furniture.getFurnitureCategory()).add(furniture);
+                        if (splitFurniture.get(furniture.getCategory()) != null) {
+                            splitFurniture.get(furniture.getCategory()).add(furniture);
                         } else {
                             ArrayList<Furniture> mFurniture = new ArrayList<>();
                             mFurniture.add(furniture);
-                            splitFurniture.put(furniture.getFurnitureCategory(), mFurniture);
+                            splitFurniture.put(furniture.getCategory(), mFurniture);
                         }
                     }
                     for (String furnitureCategory : splitFurniture.keySet()) {

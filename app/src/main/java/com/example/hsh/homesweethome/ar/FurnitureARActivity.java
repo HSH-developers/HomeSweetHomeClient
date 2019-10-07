@@ -58,9 +58,9 @@ public class FurnitureARActivity extends AppCompatActivity {
         if(intent.getExtras() != null) {
             furniture = (Furniture) intent.getSerializableExtra("Furniture");
         }
-        Log.e(tag, furniture.getFurnitureModelUrl());
+        Log.e(tag, furniture.getModelUrl());
 
-        GLB_ASSET = furniture.getFurnitureModelUrl();
+        GLB_ASSET = furniture.getModelUrl();
         setContentView(R.layout.ar_fragment);
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
         animateButton = findViewById(R.id.animate);
