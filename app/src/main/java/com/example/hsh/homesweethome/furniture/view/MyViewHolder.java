@@ -57,7 +57,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements RecyclerVie
         furniture_category.setOnClickListener(v -> {
             AppCompatActivity activity = (AppCompatActivity) activityContext;
             FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-            Fragment furnitureCategoryFragment = new FurnitureCategoryFragment();
+            Fragment furnitureCategoryFragment = new CategoryFragment();
             Bundle fragArgs = new Bundle();
             fragArgs.putSerializable("category_furnitures", category);
             fragArgs.putStringArrayList("locations", new ArrayList<>(Arrays.asList("Living Room", "Bedroom", "Kitchen", "Outdoor")));

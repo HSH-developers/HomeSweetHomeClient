@@ -1,7 +1,7 @@
-package com.example.hsh.homesweethome.furniture.view.interfaces;
+package com.example.hsh.homesweethome.auth.login.view;
 
 import com.example.hsh.homesweethome.common.view.BaseFragment;
 
-public interface IFurnitureView {
+public interface ILoginView {
     void setFragment(BaseFragment fragment);
 }

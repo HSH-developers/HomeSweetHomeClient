@@ -24,7 +24,7 @@ only being visible in the Google Play Store on devices that support ARCore. -->
 
         <meta-data android:name="com.google.ar.core" android:value="required" />
 
-        <activity android:name=".furniture.Furniture">
+        <activity android:name=".auth.login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

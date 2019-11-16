@@ -31,7 +31,7 @@ public class Session extends Application {
         String currentCookieUser = prefs.getString(CURRENT_COOKIE_USER,null);
 
         if(currentCookieUser == null){
-            Log.e(TAG,"Assigning a cookie to the current user for persistent login");
+            Log.e(TAG,"Assigning a cookie to the current user for persistent Login");
 
             for (String cookieSID : originalResponse.headers("Set-Cookie")) {
                 cookies.add(cookieSID);

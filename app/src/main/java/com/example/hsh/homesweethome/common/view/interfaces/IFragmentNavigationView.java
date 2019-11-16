@@ -1,4 +1,4 @@
-package com.example.hsh.homesweethome.furniture.view.interfaces;
+package com.example.hsh.homesweethome.common.view.interfaces;
 
 import com.example.hsh.homesweethome.furniture.presenter.interfaces.IFragmentNavigationPresenter;
 

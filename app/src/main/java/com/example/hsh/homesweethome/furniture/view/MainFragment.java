@@ -13,6 +13,7 @@ import android.widget.SearchView;
 
 import com.example.hsh.homesweethome.Models.CategoryFurniture;
 import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.common.view.BaseFragment;
 import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterMain;
 import com.example.hsh.homesweethome.furniture.presenter.FurnitureMainFragmentPresenter;
 import com.example.hsh.homesweethome.furniture.presenter.RecyclerViewAdapterMainPresenter;
@@ -20,7 +21,7 @@ import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureMainFra
 
 import java.util.ArrayList;
 
-public class FurnitureMainFragment extends FurnitureBaseFragment implements IFurnitureMainFragmentView {
+public class MainFragment extends BaseFragment implements IFurnitureMainFragmentView {
 
     private FurnitureMainFragmentPresenter presenter;
     private RecyclerViewAdapterMain verticalAdapter;
@@ -28,9 +29,9 @@ public class FurnitureMainFragment extends FurnitureBaseFragment implements IFur
 
     private SearchView searchView;
 
-    private String tag = "FurnitureMainFragment";
+    private String tag = "MainFragment";
 
-    public FurnitureMainFragment() {
+    public MainFragment() {
     }
 
 

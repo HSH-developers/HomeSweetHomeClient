@@ -7,107 +7,107 @@ import java.io.Serializable;
 
 public class Furniture implements Serializable{
 
-    @SerializedName("furnitureName")
+    @SerializedName("name")
     @Expose
-    private String furnitureName;
-    @SerializedName("furnitureBrand")
+    private String name;
+    @SerializedName("brand")
     @Expose
-    private String furnitureBrand;
-    @SerializedName("furnitureCategory")
+    private String brand;
+    @SerializedName("category")
     @Expose
-    private String furnitureCategory;
-    @SerializedName("furnitureDimension")
+    private String category;
+    @SerializedName("dimension")
     @Expose
-    private String furnitureDimension;
-    @SerializedName("furniturePrice")
+    private String dimension;
+    @SerializedName("price")
     @Expose
-    private Integer furniturePrice;
-    @SerializedName("furnitureType")
+    private Integer price;
+    @SerializedName("type")
     @Expose
-    private String furnitureType;
-    @SerializedName("furnitureImageUrl")
+    private String type;
+    @SerializedName("image_url")
     @Expose
-    private String furnitureImageUrl;
-    @SerializedName("furnitureModelUrl")
+    private String imageUrl;
+    @SerializedName("model_url")
     @Expose
-    private String furnitureModelUrl;
-    @SerializedName("furnitureBrandImageUrl")
+    private String modelUrl;
+    @SerializedName("brand_image_url")
     @Expose
-    private String furnitureBrandImageUrl;
+    private String brandImageUrl;
     @SerializedName("inStore")
     @Expose
     private Boolean in_store;
 
-    public String getFurnitureName() {
-        return furnitureName;
+    public String getName() {
+        return name;
     }
 
-    public void setFurnitureName(String furnitureName) {
-        this.furnitureName = furnitureName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFurnitureBrand() {
-        return furnitureBrand;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setFurnitureBrand(String furnitureBrand) {
-        this.furnitureBrand = furnitureBrand;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
-    public String getFurnitureCategory() {
-        return furnitureCategory;
+    public String getCategory() {
+        return category;
     }
 
-    public void setFurnitureCategory(String furnitureCategory) {
-        this.furnitureCategory = furnitureCategory;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getFurnitureDimension() {
-        return furnitureDimension;
+    public String getDimension() {
+        return dimension;
     }
 
-    public void setFurnitureDimension(String furnitureDimension) {
-        this.furnitureDimension = furnitureDimension;
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
     }
 
-    public Integer getFurniturePrice() {
-        return furniturePrice;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setFurniturePrice(Integer furniturePrice) {
-        this.furniturePrice = furniturePrice;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public String getFurnitureType() {
-        return furnitureType;
+    public String getType() {
+        return type;
     }
 
-    public void setFurnitureType(String furnitureType) {
-        this.furnitureType = furnitureType;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getFurnitureImageUrl() {
-        return furnitureImageUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setFurnitureImageUrl(String furnitureImageUrl) {
-        this.furnitureImageUrl = furnitureImageUrl;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public String getFurnitureModelUrl() {
-        return furnitureModelUrl;
+    public String getModelUrl() {
+        return modelUrl;
     }
 
-    public void setFurnitureModelUrl(String furnitureModelUrl) {
-        this.furnitureModelUrl = furnitureModelUrl;
+    public void setModelUrl(String modelUrl) {
+        this.modelUrl = modelUrl;
     }
 
-    public String getFurnitureBrandImageUrl() {
-        return furnitureBrandImageUrl;
+    public String getBrandImageUrl() {
+        return brandImageUrl;
     }
 
-    public void setFurnitureBrandImageUrl(String furnitureBrandImageUrl) {
-        this.furnitureBrandImageUrl = furnitureBrandImageUrl;
+    public void setBrandImageUrl(String brandImageUrl) {
+        this.brandImageUrl = brandImageUrl;
     }
 
     public Boolean getInStore() {

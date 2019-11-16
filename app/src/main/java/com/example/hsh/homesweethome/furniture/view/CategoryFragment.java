@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.hsh.homesweethome.Models.Furniture;
 import com.example.hsh.homesweethome.R;
+import com.example.hsh.homesweethome.common.view.BaseFragment;
 import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterFurniture;
 import com.example.hsh.homesweethome.furniture.adapter.RecyclerViewAdapterLocations;
 import com.example.hsh.homesweethome.furniture.presenter.FurnitureCategoryFragmentPresenter;
@@ -26,7 +27,7 @@ import com.example.hsh.homesweethome.furniture.view.interfaces.IFurnitureCategor
 
 import java.util.ArrayList;
 
-public class FurnitureCategoryFragment extends FurnitureBaseFragment implements IFurnitureCategoryFragmentView {
+public class CategoryFragment extends BaseFragment implements IFurnitureCategoryFragmentView {
 
     private TextView furnitureCategory;
     private RecyclerView locationsHorizontalRecyclerView;
@@ -38,7 +39,7 @@ public class FurnitureCategoryFragment extends FurnitureBaseFragment implements 
     private SeekBar price_slider_bar;
     private FurnitureCategoryFragmentPresenter presenter;
 
-    public FurnitureCategoryFragment() {
+    public CategoryFragment() {
     }
 
     private Integer filteredPrice;
