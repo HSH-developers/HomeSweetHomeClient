@@ -40,7 +40,7 @@ public class FurnitureCategoryListModel implements IFurnitureCategoryListModel {
     @Override
     public void getFurnitureList(OnFinishedListener onFinishedListener) {
 
-        Call<List<Furniture>> call = mAPIService.getFurnitures();
+        Call<List<Furniture>> call = mAPIService.getFurniture();
         call.enqueue(new Callback<List<Furniture>>() {
             @Override
             public void onResponse(Call<List<Furniture>> call, Response<List<Furniture>> response) {

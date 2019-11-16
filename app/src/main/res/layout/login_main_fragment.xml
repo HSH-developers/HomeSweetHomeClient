@@ -8,13 +8,13 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
         <ImageView
-            android:src="@mipmap/home_sweet_home"
+            android:src="@mipmap/home_sweet_home_round"
             android:layout_width="wrap_content"
             android:background="@drawable/side_nav_bar"
             android:layout_height="72dp"

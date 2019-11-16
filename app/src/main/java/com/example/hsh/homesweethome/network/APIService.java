@@ -12,6 +12,6 @@ import retrofit2.http.Path;
 public interface APIService {
 
     @GET("/internal/v1/furniture/list")
-    Call<List<Furniture>> getFurnitures();
+    Call<List<Furniture>> getFurniture();
 
 }

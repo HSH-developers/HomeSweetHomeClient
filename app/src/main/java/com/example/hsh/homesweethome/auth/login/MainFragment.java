@@ -21,13 +21,13 @@ import butterknife.ButterKnife;
 
 public class MainFragment extends BaseFragment implements IMainFragmentView {
     @BindView(R.id.input_email)
-    private EditText emailText;
+    EditText emailText;
     @BindView(R.id.input_password)
-    private EditText passwordText;
+    EditText passwordText;
     @BindView(R.id.btn_login)
-    private Button loginButton;
+    Button loginButton;
     @BindView(R.id.link_signup)
-    private TextView signupLink;
+    TextView signupLink;
 
     private MainFragmentPresenter presenter;
 
@@ -37,18 +37,17 @@ public class MainFragment extends BaseFragment implements IMainFragmentView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.login_main_fragment, container, false );
+        View view = inflater.inflate(R.layout.login_main_fragment, container, false );
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(view);
         presenter = new MainFragmentPresenter(this);
 
-        loginButton.setOnClickListener(view1 -> {
-            login();
-        });
+        loginButton.setOnClickListener(view1 -> login());
 
     }
 
@@ -61,6 +60,8 @@ public class MainFragment extends BaseFragment implements IMainFragmentView {
 
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
+
+
 
     }
 
