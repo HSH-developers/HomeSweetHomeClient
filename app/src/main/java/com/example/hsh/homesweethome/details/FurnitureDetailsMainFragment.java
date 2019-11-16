@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 @SuppressLint("ValidFragment")
 public class FurnitureDetailsMainFragment extends Fragment {
-    private static final String TAG = "FurnitureMainFragment";
+    private static final String TAG = "MainFragment";
     private Furniture furniture;
     ImageView furnitureImage;
     TextView furnitureNameTextView;

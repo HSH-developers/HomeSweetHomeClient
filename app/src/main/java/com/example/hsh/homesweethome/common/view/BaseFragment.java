@@ -1,11 +1,11 @@
-package com.example.hsh.homesweethome.furniture.view;
+package com.example.hsh.homesweethome.common.view;
 
 import android.support.v4.app.Fragment;
 
 import com.example.hsh.homesweethome.furniture.presenter.interfaces.IFragmentNavigationPresenter;
-import com.example.hsh.homesweethome.furniture.view.interfaces.IFragmentNavigationView;
+import com.example.hsh.homesweethome.common.view.interfaces.IFragmentNavigationView;
 
-public abstract class FurnitureBaseFragment extends Fragment implements IFragmentNavigationView {
+public abstract class BaseFragment extends Fragment implements IFragmentNavigationView {
 
     protected IFragmentNavigationPresenter navigationPresenter;
 
